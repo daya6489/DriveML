@@ -1,0 +1,42 @@
+---
+title: "Classification ML model report"
+output:
+  html_document: 
+    theme: cerulean
+    toc: yes
+    toc_depth: 6
+params:
+  data: data
+  Target: Target
+  label: label
+  theme: theme
+  sc: sc
+  sn: sn
+  Rc: Rc
+---
+  
+```{r setup, include=FALSE}
+library(rmarkdown)
+library(SmartEDA)
+library(knitr)
+library(scales)
+library(gridExtra)
+library(ggplot2)
+
+data <- params$data
+
+```
+  
+## Data summary
+Analyzing the data sets to summarize their main characteristics of variables, often with visual graphs, without using a statistical model. 
+
+## Model summary
+Understanding the dimensions of the dataset, variable names, overall missing summary and data types of each variables
+
+## Model performance comaprision
+
+## ROC curve
+
+## Variable importance
+
+## Model lift 

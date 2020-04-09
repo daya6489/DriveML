@@ -1,0 +1,21 @@
+#' @title dataset Heart Disease - Classifications
+#' @description This database contains 76 attributes, but all published experiments refer to using a subset of 14 of them. In particular, the Cleveland database is the only one that has been used by ML researchers to this date. The "goal" field refers to the presence of heart disease in the patient. It is integer valued from 0 (no presence) to 4.
+#' @format A data frame with 303 rows and 14 variables:
+#' \describe{
+#'   \item{\code{age}}{integer Age}
+#'   \item{\code{sex}}{integer Sex}
+#'   \item{\code{cp}}{integer chest pain type (4 values)}
+#'   \item{\code{trestbps}}{integer resting blood pressure}
+#'   \item{\code{chol}}{integer serum cholestoral in mg/dl}
+#'   \item{\code{fbs}}{integer fasting blood sugar > 120 mg/dl}
+#'   \item{\code{restecg}}{integer resting electrocardiographic results (values 0,1,2)}
+#'   \item{\code{thalach}}{integer maximum heart rate achieved}
+#'   \item{\code{exang}}{integer exercise induced angina}
+#'   \item{\code{oldpeak}}{double oldpeak = ST depression induced by exercise relative to rest}
+#'   \item{\code{slope}}{integer the slope of the peak exercise ST segment}
+#'   \item{\code{ca}}{integer number of major vessels (0-3) colored by flourosopy}
+#'   \item{\code{thal}}{integer thal: 3 = normal; 6 = fixed defect; 7 = reversable defect}
+#'   \item{\code{target_var}}{integer the presence of heart disease in the patient. It is integer valued from 0 (no presence) to 4}
+#'}
+#' @source \url{https://www.kaggle.com/cdabakoglu/heart-disease-classifications-machine-learning}
+"heart"

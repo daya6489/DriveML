@@ -1,0 +1,19 @@
+Package: SmartML
+Type: Package
+Title: Self-Drive machine learning projects
+Version: 0.1.0
+Authors@R: c(person("Dayanand Ubrangala", role = c("aut", "cre"), email = "daya6489@gmail.com"),
+             person("Kiran", "R", role = c("aut","ctb")),
+             person("Ravi", "Prasad Kondapalli", role = c("aut","ctb")),
+             person("Sayan", "Putatunda", role = c("aut","ctb")))
+Maintainer: Dayanand Ubrangala<daya6489@gmail.com>
+Depends: R (>= 3.3.0)
+Imports: ggplot2(>= 2.2.1),sampling(>= 2.8), scales(>= 0.5.0), rmarkdown(>= 1.9), data.table(>= 1.10.4-3), SmartEDA(>= 0.3.1) , caret(>= 6.0-84), ParamHelpers(>= 1.12), mlr(>= 2.15.0)
+Description: Automated machine learning classification model functions such as exploratory data analysis, data cleaning, feature engineering, model validation, model tuning and model selection.
+License: MIT + file LICENSE
+Suggests: testthat, knitr, iml, ranger, glmnet, randomForest, rpart, xgboost, stats
+Encoding: UTF-8
+LazyData: true
+Repository: CRAN
+RoxygenNote: 6.1.1
+VignetteBuilder: knitr

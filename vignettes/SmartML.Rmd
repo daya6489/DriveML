@@ -1,0 +1,295 @@
+---
+title: "SmartML: Self-Drive machine learning projects"
+subtitle: "Automated machine learning classification model functions"
+author: "Dayananda Ubrangala, Sayan Putatunda, Kiran R, Ravi Prasad Kondapalli"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    fig_caption: yes
+    toc: true
+    css: custom.css
+vignette: >
+  %\VignetteIndexEntry{Vignette Title Subtitle}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\SweaveUTF8
+  %\VignetteIndexEntry{Information Value: Usage Examples}  
+---
+  
+```{r setup, include=FALSE}
+library(rmarkdown)
+library(SmartEDA)
+library(SmartML)
+library(knitr)
+library(scales)
+library(ggplot2)
+```
+
+
+## 1. Introduction
+
+The document introduces the **SmartML** package and how it can help you to build effortless machine learning classification models in short period
+
+  **SmartML** is a series of functions sucha as `AutoDataPrep`, `AutoMAR`, `autoMLmodel`.  **SmartML** automates some of the most difficult machine learning functions such as data exploratory analysis, data cleaning, data tranformations, feature engineering, model training, model validation, model tuning and model selection. 
+  
+  
+  This package automates following steps on any input dataset for machine learning classification problems, 
+
+1. Exploratory data analysis using SmartEDA functions
+    + Generate automated EDA report in HTML format
+
+2. Data cleaning
+    + Replacing NA, infinite values
+    + Removing duplicates
+    + Cleaning feature names
+
+3. Feature engineering
+    + Missing at random features
+    + Missing variable imputation
+    + Outlier treatment  - Oultier flag and imputation with 5th or 95th percentile value
+    + Date variable transformation
+    + Bulk interactions for numerical features
+    + Frequent tranformer for categorical features
+    + Categorical feature engineering - one hot encoding
+    + Feature selection using zero variance, correlation and AUC method
+    
+4. Model training and validation
+    + Automated test and validation set creations
+    + Hyperparameter tuing using random search
+    + Mutliple binary classification included like logistic regression, randomForest, xgboost, glmnet, rpart
+    + Model validation using AUC value
+    + Model plots like training and testing ROC curve, threshold plot
+    + Probaility scores and model objects 
+
+5. Model Explanation
+    + Lift plot
+    + Partial dependence plot
+    + Feature importance plot
+
+6. Model report 
+    + model output in rmarkdown html format
+
+To summarize, SmartML package helps in getting the complete Machine learning classification model just by running the function instead of writing lengthy r code.
+
+## 2. Functionalities of SmartML
+
+The SmartML R package has four unique functionalities as
+
+1. Data Exploration
+    + SmartEDA has a complete exploratory data analysis function
+
+2. Data preparations
+    + AutoDataPrep function to generate a novel features based on the functional understanding of the dataset
+    
+3. Machine learning models
+    + autoMLmodel function to develope baseline machine learning models using regression and tree based classfication techniques
+
+4. Model report
+    + mlreport function to print the machine learning model outcome in HTML format
+
+## 3. SmartML: Machine learning classfication model
+
+#### About data
+
+This database contains 76 attributes, but all published experiments refer to using a subset of 14 of them. In particular, the Cleveland database is the only one that has been used by ML researchers to this date. The "goal" field refers to the presence of heart disease in the patient. It is integer valued from 0 (no presence) to 4.
+
+Data Source [Kaggle](https://archive.ics.uci.edu/ml/datasets/Heart+Disease).
+
+Install the package "SmartML" to get the example data set.
+
+```{r eda-c3-r, warning=FALSE,eval=F}
+install.packages("SmartML")
+library("SmartML")
+library("SmartEDA")
+## Load sample dataset from ISLR pacakge
+heart = SmartML::heart
+```
+
+more detailed attribute information is there in `SmartML` help page
+
+### 3.1 Data Exploration
+
+For data exploratory analysis used `SmartEDA` package
+
+#### Overview of the data
+Understanding the dimensions of the dataset, variable names, overall missing summary and data types of each variables
+
+```{r od_1,warning=FALSE,eval=F,include=T}
+# Overview of the data - Type = 1
+ExpData(data=heart,type=1)
+
+# Structure of the data - Type = 2
+ExpData(data=heart,type=2)
+```
+
+```{r od_2,warning=FALSE,eval=T,include=F}
+ovw_tabl <- ExpData(data=heart,type=1)
+ovw_tab2 <- ExpData(data=heart,type=2)
+```
+
+  * Overview of the data
+```{r od_3,warning=FALSE,eval=T,render=ovw_tabl,echo=F}
+kable(ovw_tabl, "html")
+```
+
+  * Structure of the data
+  
+```{r od_31,warning=FALSE,eval=T,render=ovw_tab2,echo=F}
+kable(ovw_tab2, "html")
+```
+
+#### Summary of numerical variables
+
+```{r snc1,warning=FALSE,eval=T,include=F}
+snc = ExpNumStat(heart,by="GA",gp="target_var",Qnt=seq(0,1,0.1),MesofShape=2,Outlier=TRUE,round=2)
+rownames(snc)<-NULL
+```
+
+```{r snc2, warning=FALSE,eval=F,include=T}
+ExpNumStat(heart,by="GA",gp="target_var",Qnt=seq(0,1,0.1),MesofShape=2,Outlier=TRUE,round=2)
+```
+
+```{r snc3,warning=FALSE,eval=T,render=snc,echo=F}
+paged_table(snc)
+```
+
+#### Distributions of Numerical variables
+
+* Box plots for all numerical variables vs categorical dependent variable - Bivariate comparision only with categories
+
+Boxplot for all the numeric attributes by each category of **target_var**
+
+```{r bp3.1,warning=FALSE,eval=T,include=T,fig.align='center',fig.height=7,fig.width=7}
+plot4 <- ExpNumViz(heart,target="target_var",type=1,nlim=3,fname=NULL,Page=c(2,2),sample=8)
+plot4[[1]]
+```
+
+#### Summary of categorical variables
+
+```{r ed3.3, eval=T,include=F}
+et100 <- ExpCTable(heart,Target="target_var",margin=1,clim=10,nlim=3,round=2,bin=NULL,per=F)
+rownames(et100)<-NULL
+```
+
+**Cross tabulation with target_var variable**
+
+  * Custom tables between all categorical independent variables and target_var variable **target_var** 
+
+
+```{r ed3.4, warning=FALSE,eval=F,include=T}
+ExpCTable(Carseats,Target="Urban",margin=1,clim=10,nlim=3,round=2,bin=NULL,per=F)
+```
+
+```{r ed3.5,warning=FALSE,eval=T,render=et100,echo=F,out.height=8,out.width=8}
+kable(et100,"html")
+```
+
+
+#### Distributions of categorical variables
+
+Stacked bar plot with vertical or horizontal bars for all categorical variables 
+
+```{r ed3.10,warning=FALSE,eval=T,include=T,fig.align='center',fig.height=7,fig.width=7}
+plot5 <- ExpCatViz(heart,target = "target_var", fname = NULL, clim=5,col=c("slateblue4","slateblue1"),margin=2,Page = c(2,1),sample=2)
+plot5[[1]]
+```
+
+#### Outlier analysis using boxplot
+
+```{r ktana, eval=T,include=F}
+ana1 <- ExpOutliers(heart, varlist = c("oldpeak","trestbps","chol"), method = "boxplot",  treatment = "mean", capping = c(0.1, 0.9))
+outlier_summ <- ana1[[1]]
+```
+
+```{r out1, warning=FALSE,eval=F,include=T}
+ExpOutliers(heart, varlist = c("oldpeak","trestbps","chol"), method = "boxplot",  treatment = "mean", capping = c(0.1, 0.9))
+```
+
+```{r out11,warning=FALSE,eval=T,render=outlier_summ,echo=F,out.height=8,out.width=8}
+kable(outlier_summ,"html")
+```
+
+
+### 3.2 Data preparations using `autoDataprep`
+
+```{r , warning=FALSE,eval=T,include=T}
+dateprep <- autoDataprep(data = heart,
+                             target = 'target_var',
+                             missimpute = 'default',
+                             auto_mar = FALSE,
+                             mar_object = NULL,
+                             dummyvar = TRUE,
+                             char_var_limit = 15,
+                             aucv = 0.002,
+                             corr = 0.98,
+                             outlier_flag = TRUE,
+                             uid = NULL,
+                             onlykeep = NULL,
+                             drop = NULL)
+printautoDataprep(dateprep)
+train_data <- dateprep$master_data
+```
+
+
+### 3.3 Machine learning models using `autoMLmodel`
+
+Automated training, tuning and validation of machine learning models. This function includes following binary classification techniques
+
+    + Logistic regression - logreg
+    + Regularised regression - glmnet
+    + Extreme gradient boosting - xgboost
+    + Random forest - randomForest
+    + Random forest - ranger
+    + Decision tree - rpart
+
+```{r , warning=FALSE,eval=T,include=T}
+mymodel <- autoMLmodel( train = heart,
+                        test = NULL,
+                        target = 'target_var',
+                        testSplit = 0.2,
+                        maxLevels = 100,
+                        tuneIters = 10,
+                        tuneType = "random",
+                        models = "all",
+                        varImp = 10,
+                        liftGroup = 50,
+                        maxObs = 4000,
+                        uid = NULL,
+                        seed = 1991)
+```
+
+### 3.3 Model output
+
+Model performance
+
+```{r out00,warning=FALSE,eval=T,render=mymodel, echo=F,out.height=8,out.width=8}
+performance <- mymodel$results
+kable(performance, "html")
+
+```
+
+Randomforest model ROC curve and variable importance
+
+Training data set ROC
+```{r o1,warning=FALSE,render=mymodel,eval=T,include=T,fig.align='center',fig.height=4,fig.width=7}
+TrainROC <- mymodel$trainedModels$randomForest$modelPlots$TrainROC
+TrainROC
+```
+
+Test data set ROC
+```{r o10,warning=FALSE,render=mymodel,eval=T,include=T,fig.align='center',fig.height=4,fig.width=7}
+TestROC <- mymodel$trainedModels$randomForest$modelPlots$TestROC
+TestROC
+```
+
+Variable importance
+```{r o11,warning=FALSE,render=mymodel,eval=T,include=T,fig.align='center',fig.height=4,fig.width=7}
+VarImp <- mymodel$trainedModels$randomForest$modelPlots$VarImp
+VarImp
+```
+
+Threshold
+```{r o12,warning=FALSE,render=mymodel,eval=T,include=T,fig.align='center',fig.height=4,fig.width=7}
+Threshold <- mymodel$trainedModels$randomForest$modelPlots$Threshold
+Threshold
+```
