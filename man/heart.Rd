@@ -3,8 +3,9 @@
 \docType{data}
 \name{heart}
 \alias{heart}
-\title{dataset Heart Disease - Classifications}
-\format{A data frame with 303 rows and 14 variables:
+\title{Dataset Heart Disease - Classifications}
+\format{
+A data frame with 303 rows and 14 variables:
 \describe{
   \item{\code{age}}{integer Age}
   \item{\code{sex}}{integer Sex}
@@ -20,14 +21,22 @@
   \item{\code{ca}}{integer number of major vessels (0-3) colored by flourosopy}
   \item{\code{thal}}{integer thal: 3 = normal; 6 = fixed defect; 7 = reversable defect}
   \item{\code{target_var}}{integer the presence of heart disease in the patient. It is integer valued from 0 (no presence) to 4}
-}}
+}
+}
 \source{
 \url{https://www.kaggle.com/cdabakoglu/heart-disease-classifications-machine-learning}
 }
 \usage{
 heart
 }
+\value{
+sample data
+}
 \description{
 This database contains 76 attributes, but all published experiments refer to using a subset of 14 of them. In particular, the Cleveland database is the only one that has been used by ML researchers to this date. The "goal" field refers to the presence of heart disease in the patient. It is integer valued from 0 (no presence) to 4.
+}
+\examples{
+## Load heart data
+data(heart)
 }
 \keyword{datasets}

@@ -4,26 +4,32 @@
 \alias{autoMAR}
 \title{Function to identify and generate the Missing at Random features (MAR)}
 \usage{
-autoMAR(data, aucv = 0.9, strataname = NULL, stratasize = NULL,
-  mar_method = "glm")
+autoMAR(
+  data,
+  aucv = 0.9,
+  strataname = NULL,
+  stratasize = NULL,
+  mar_method = "glm"
+)
 }
 \arguments{
-\item{data}{dataframe or data.table}
+\item{data}{[data.frame | Required] dataframe or data.table}
 
-\item{aucv}{AUC cut-off value for the not missing at random variable selection}
+\item{aucv}{[integer  | Optional] auc cut-off value for the not missing at random variable selection}
 
-\item{strataname}{vector of stratification variables}
+\item{strataname}{[text  | Optional] vector of stratification variables}
 
-\item{stratasize}{vector of stratum sample sizes (in the order in which the strata are given in the input data set).}
+\item{stratasize}{[integer  | Optional] vector of stratum sample sizes (in the order in which the strata are given in the input dataset).}
 
-\item{mar_method}{missing at random classification method ("glm", "rf"). Default GLM is used (GLM is run faster for high dimension data)}
+\item{mar_method}{[text  | Optional] missing at random classification method ("glm", "rf"). Default GLM is used (GLM runs faster for high dimensional data)}
 }
 \value{
-List output including missing variable summary and number of MAR flag variables
+list output including missing variable summary and number of MAR flag variables
 }
 \description{
-this function will automatically identify the missing pattern and flag the variable if they are not missing at random based on AUC method
+This function will automatically identify the missing patterns and flag the variables if they are not missing at random based on the AUC method
 }
 \examples{
-autoMAR (heart, aucv = 0.9, strataname = NULL, stratasize = NULL, mar_method = "glm")
+# create missing at random features
+marobj <- autoMAR (heart, aucv = 0.9, strataname = NULL, stratasize = NULL, mar_method = "glm")
 }

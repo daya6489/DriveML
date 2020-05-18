@@ -1,4 +1,4 @@
-#' @title dataset Heart Disease - Classifications
+#' @title Dataset Heart Disease - Classifications
 #' @description This database contains 76 attributes, but all published experiments refer to using a subset of 14 of them. In particular, the Cleveland database is the only one that has been used by ML researchers to this date. The "goal" field refers to the presence of heart disease in the patient. It is integer valued from 0 (no presence) to 4.
 #' @format A data frame with 303 rows and 14 variables:
 #' \describe{
@@ -17,5 +17,9 @@
 #'   \item{\code{thal}}{integer thal: 3 = normal; 6 = fixed defect; 7 = reversable defect}
 #'   \item{\code{target_var}}{integer the presence of heart disease in the patient. It is integer valued from 0 (no presence) to 4}
 #'}
+#' @return sample data
+#' @examples
+#' ## Load heart data
+#' data(heart)
 #' @source \url{https://www.kaggle.com/cdabakoglu/heart-disease-classifications-machine-learning}
 "heart"

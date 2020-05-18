@@ -9,6 +9,7 @@ output:
     toc_depth: 6
 params:
   mlobject: mlobject
+  mldata: mldata
 ---
   
 ```{r setup, include=FALSE}
@@ -19,10 +20,170 @@ library(scales)
 library(ggplot2)
 
 modelobject <- params$mlobject
+mldata <- params$mldata
 
 ```
   
-## Machine Learning Classification Model 
+## ML Model Data Preparation
+
+```{r mldd, warning=FALSE, eval=T, include=F}
+## MAR section
+
+```
+
+
+### Summary of input dataframe
+
+**Overview of the data**
+
+```{r mdp1,warning=FALSE,eval=T,render=t1,echo=F}
+typ1 <- mldata$datasummary$type1
+kable(typ1)
+```
+
+**Variable summary**
+
+```{r mdp2,warning=FALSE,eval=T,render=t1,echo=F}
+typ2 <- mldata$datasummary$type2
+paged_table(typ2)
+```
+
+### Missing not completely at random variable check (MAR)
+More than one missing value columns are considered for MAR computation
+
+```{r mdp3, warning = FALSE, eval = T, echo = F}
+print(mldata$var_list$MAR_col)
+```
+
+
+### Missing imputation
+
+```{r mdp4, warning = FALSE, eval = T, echo = F}
+if(mldata$call$missimpute=="default") {
+  mdd <- data.frame(Variable_type = c("Factor", "Integer", "Numeric", "Character"),
+  Impute_method = c("Mode value", "Mean value", "Median value", "Constant value"))
+  kable(mdd)
+    } else {
+    cat("Missing replaced with", "{", print(mldata$call$missimpute), "\n") }
+
+```
+
+### Feature engineering
+
+```{r mdp5, warning = FALSE, eval = T, echo = F}
+ccd = data.frame(Descriptions = c("Checked and removed useless variables:",
+"No. of variables before fetature reductions:"), Value = c(length(mldata$var_list$Dropped_col), length(mldata$overall_variable)))
+kable(ccd)
+```
+
+#### Variable computaion
+
+##### Outlier variable
+
+```{r mdp6, warning = FALSE, eval = T, echo = F}
+print(mldata$outlier_summary)
+```
+
+##### Interaction variables using multiplaction method
+
+Calculated ineraction between two continuous variables using multiplication method 
+
+List of variables calculated are below
+
+```{r mdp7, warning = FALSE, eval = T, echo = F}
+cc  <- mldata$overall_variable
+print(cc[grep("Inter_", cc)])
+```
+
+
+##### Frequent transformer variables
+
+The frequent transformer counts each categorical variable in the data set
+
+List of variables calculated are below
+
+```{r mdp8, warning = FALSE, eval = T, echo = F}
+cc  <- mldata$overall_variable
+print(cc[grep("Freq_t", cc)])
+```
+
+##### Date transformer variables
+
+Date transformer retrieves any date values like month, year, quarter and week
+
+List of variables calculated are below
+
+```{r mdp9, warning = FALSE, eval = T, echo = F}
+cc  <- mldata$overall_variable
+print(cc[grep("datet_", cc)])
+```
+
+##### Dummy variables using one hot encoding
+
+One hot coding for all categorical variables
+
+```{r mdp10, warning = FALSE, eval = T, echo = F}
+cc  <- mldata$var_list$Dummy_col
+print(cc)
+
+```
+
+#### Variable reduction
+
+##### Zero variance
+
+```{r mdp11, warning = FALSE, eval = T, echo = F}
+cc  <- mldata$zerovariance
+print(cc)
+```
+
+
+##### Correlation
+
+Highly correlated variables
+
+```{r mdp12, warning = FALSE, eval = T, echo = F}
+cc  <- mldata$cor_var
+print(cc)
+```
+
+**Correaltion table**
+
+```{r mdp121,warning=FALSE,eval=T, echo=F}
+cc  <- mldata$raw_list$Num_Correlation
+paged_table(cc)
+```
+
+##### Area Under the curve
+
+Top predictors based on AUC value against dependent variables
+
+```{r mdp13, warning = FALSE, eval = T, echo = F}
+cc  <- mldata$auc_var
+print(cc)
+```
+
+**AUC summary table**
+
+```{r mdp131,warning=FALSE,eval=T, echo=F}
+cc  <- mldata$raw_list$AUC_value
+
+if(nrow(cc) > 0){
+  rownames(cc) <- NULL
+  cc <- cc[, c(2:3)]
+}
+
+paged_table(cc)
+```
+
+### Final table view - head
+
+```{r mdp131,warning=FALSE,eval=T, echo=F}
+cc  <- mldata$master_data
+paged_table(head(cc, 5))
+```
+
+## Machine Learning Classification Model
 
 Automated Machine Learning (DriveML) mainly refers to the automated methods for model selection and hyper-parameter optimization of various algorithms such as random forests, gradient boosting etc..
 
@@ -76,6 +237,7 @@ for(j in exe_modl){
   if(j == "logreg") assign(paste0("vi_",j), TRUE)
   if(j == "rpart") assign(paste0("vi_",j), TRUE)
 }
+
 
 ```
 
@@ -172,7 +334,8 @@ masterModel$modelPlots$TrainROC
 masterModel$modelPlots$TestROC
 ```
 
-### Variable importance or coefficients
+### Variable importance
+
 
 ```{r vip1, fig.show = "hold", out.width = "70%", fig.align = "default", warning=FALSE, eval= vi_xgboost, render = modelobject, echo=F, fig.height=7}
 masterModel <- modelobject$trainedModels[["xgboost"]]
@@ -236,6 +399,7 @@ Note: Plot available for top important variables
 lapply(names(modelobject$modelexp$pdp$plots), function(x) {cc = modelobject$modelexp$pdp$plots[[x]]; cc})
 
 ```
+
 
 ### Sample view of predicted score - validation set
 

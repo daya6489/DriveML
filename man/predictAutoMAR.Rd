@@ -19,3 +19,12 @@ flagged variables for missing not completely at random variable
 \description{
 this function can be used for autoMAR objects to generate the variable for missing variable not completely at random
 }
+\examples{
+## Missing at random features
+train <- heart[1 : 199, ]
+test <- heart[200 : 300, ]
+marobj <- autoMAR (train, aucv = 0.9, strataname = NULL, stratasize = NULL, mar_method = "glm")
+
+## print summary in console
+testobj <- predictAutoMAR(marobj, test)
+}

@@ -4,70 +4,114 @@
 \alias{autoMLmodel}
 \title{Automated machine learning training of models}
 \usage{
-autoMLmodel(train, test = NULL, target = NULL, maxLevels = 100,
-  testSplit = 0.2, tuneIters = 200, tuneType = "random",
-  gridItune = 15, models = "all", varImp = 20, liftGroup = 50,
-  maxObs = 40000, uid = NULL, seed = 1991)
+autoMLmodel(
+  train,
+  test = NULL,
+  score = NULL,
+  target = NULL,
+  testSplit = 0.2,
+  tuneIters = 200,
+  tuneType = "random",
+  models = "all",
+  perMetric = "auc",
+  varImp = 20,
+  liftGroup = 50,
+  maxObs = 10000,
+  uid = NULL,
+  pdp = FALSE,
+  positive = 1,
+  htmlreport = FALSE,
+  seed = 1991,
+  verbose = FALSE
+)
 }
 \arguments{
-\item{train}{[data.frame | Required] Training set}
+\item{train}{[data.frame | Required] training set}
 
-\item{test}{[data.frame | Optional] Optional testing set to validate models on. If none is provided, one will be created internally. Default of NULL}
+\item{test}{[data.frame | Optional] optional testing set to validate models on. If none is provided, one will be created internally. Default of NULL}
 
-\item{target}{[integer | Required] If a target is provided classification or regression models will be trained, if left as NULL unsupervised models will be trained. Default of NULL}
+\item{score}{[data.frame | Optional] optional score the models on best trained model based on AUC. If none is provided, scorelist will be null. Default of NULL}
 
-\item{maxLevels}{[integer | Optional] Number of unique values in target feature before the problem type is seen as a regression problem. Default of 100}
+\item{target}{[integer | Required] if a target is provided classification or regression models will be trained, if left as NULL unsupervised models will be trained. Default of NULL}
 
-\item{testSplit}{[numeric | Optional] Percentage of data to allocate to the test set. Stratified sampling is done. Default of 0.1}
+\item{testSplit}{[numeric | Optional] percentage of data to allocate to the test set. Stratified sampling is done. Default of 0.1}
 
-\item{tuneIters}{[integer | Optional] Number of tuning iterations to search for optimal hyper parameters. Default of 10}
+\item{tuneIters}{[integer | Optional] number of tuning iterations to search for optimal hyper parameters. Default of 10}
 
-\item{tuneType}{[character | Optional] Tune method applied, options are: random, frace and grid. random uses random tuning and frace uses iterated f-racing algorithm for the best solution. Default of random}
+\item{tuneType}{[character | Optional] tune method applied, list of options are:
+\itemize{
+\item "random" - random search hyperparameter tuning
+\item "frace" - frace uses iterated f-racing algorithm for the best solution from irace package
+}}
 
-\item{gridItune}{[integer | Optional] Number of tuning iterations to grid search for optimal hyper parameters. Default of 15, this is only applicable if tuneType is grid}
+\item{models}{[character | Optional] which models to train. Default option is all. Please find below the names for each of the methods
+\itemize{
+\item {randomForest}{random forests using the randomForest package}
+\item {ranger}{random forests using the ranger package}
+\item {xgboost}{gradient boosting using xgboost}
+\item {rpart}{decision tree classification using rpart}
+\item {glmnet}{regularised regression  from glmnet}
+\item {logreg}{logistic regression from stats}
+}}
 
-\item{models}{[character | Optional] Which models to train. Default of all. Available models are logistic regression, glment, rpart, xgboost, ranger and randomForest}
+\item{perMetric}{[character | Optional] model validation metric. Default is "auc"
+\itemize{
+\item {auc} - area under the curve; mlr::auc
+\item {accuracy} - accuracy; mlr::acc
+\item {balancedAccuracy} - balanced accuracy; mlr::bac
+\item {brier} - brier score; mlr::brier
+\item {f1} - F1 measure; mlr::f1
+\item {meanPrecRecall} - geometric mean of precision and recall; mlr::gpr
+\item {logloss} - logarithmic loss; mlr:logloss
+}}
 
-\item{varImp}{[integer | Optional] Number of important features to plot}
+\item{varImp}{[integer | Optional] number of important features to plot}
 
-\item{liftGroup}{[integer | Optional] NUmber of lift value to validate the test model performance}
+\item{liftGroup}{[integer | Optional] lift value to validate the test model performance}
 
-\item{maxObs}{[numeric | Optional] Number of observations in the experiment training set on which models are trained, tuned and resampled on. Default of 40000. If the training set has less than 40k observations all will be used}
+\item{maxObs}{[numeric | Optional] number of observations in the experiment training dataset on which models are trained, tuned and resampled. Default of 40,000. If the training dataset has less than 40k observations then all the observations will be used}
 
-\item{uid}{[character | Optional] unique variable to keep in test output data}
+\item{uid}{[character | Optional] unique variables to keep in test output data}
 
-\item{seed}{[integer | Optional] Random number seed for reproducible results}
+\item{pdp}{[logical | Optional] partial dependence plot for important variables}
+
+\item{positive}{[character | Optional] positive class for the target variable}
+
+\item{htmlreport}{[logical | Optional] to view the model outcome in html format}
+
+\item{seed}{[integer | Optional] random number seed for reproducible results}
+
+\item{verbose}{[logical | Optional] display executions steps on console. Default is FALSE}
 }
 \value{
 List output contains trained models and results
 }
 \description{
-Automated training, tuning and validation of machine learning models. Models are  tuned and resampling validated on an experiment set and trained on the full set and validated and testing on external sets. Classification models tune the probability threshold automatically and returns the results. Each model contains information of performance, the trained model as well as some plots.
+Automated training, tuning and validation of machine learning models. Models are tuned, resampled and validated on an experimental dataset and trained on the full dataset and validated/tested on external datasets. Classification models tune the probability threshold automatically and returns the results. Each model contains information on performance, model object and evaluation plots.
 }
 \details{
 all the models trained using mlr train function, all of the functionality in mlr package can be applied to the autoMLmodel outcome
 
-autoMLmodel provides below information of the machine learning classification models
-\describe{
-  \item{\code{trainedModels}}{Model level list output contains trained model object, hyper parameters, tuned data, test data, performance and Model plots}
-  \item{\code{results}}{Summary of all trained model reuslts like AUC, Precision, Recall, F1 score}
-  \item{\code{lift}}{Model gain chart}
+autoMLmodel provides below the information of the various machine learning classification models
+\itemize{
+\item{trainedModels}{ - model level list output contains trained model object, hyper parameters, tuned data, test data, performance and Model plots}
+\item{results}{ - summary of all trained model result like AUC, Precision, Recall, F1 score}
+\item{modelexp}{ - model gain chart}
+\item{predicted_score}{ - predicted score}
+\item{datasummary}{ - summary of the input data}
 }
 }
 \examples{
-# Run binary classification model defualt method
-mymodel <- autoMLmodel( train = heart, test = NULL, target = 'target_var', testSplit = 0.2,
-maxLevels = 100, tuneIters = 10, tuneType = "random",
-models = c("xgboost", "ranger"), varImp = 10, liftGroup = 50, maxObs = 4000,
-uid = NULL, seed = 1991)
-
+\donttest{
 # Run only Logistic regression model
-mymodel <- autoMLmodel( train = heart, test = NULL, target = 'target_var', testSplit = 0.2,
-maxLevels = 100, tuneIters = 10, tuneType = "random",
-models = "logreg", varImp = 10, liftGroup = 50, maxObs = 4000, uid = NULL, seed = 1991)
-
+mymodel <- autoMLmodel( train = heart, test = NULL, target = 'target_var',
+testSplit = 0.2, tuneIters = 10, tuneType = "random", models = "logreg",
+varImp = 10, liftGroup = 50, maxObs = 4000, uid = NULL, seed = 1991)
+}
 }
 \seealso{
-\code{\link[mlr:train]{train}}
+\code{\link[mlr:train]{mlr train}}
+\code{\link[caret:train]{caret train}}
 \code{\link[mlr:makeLearner]{makeLearner}}
+\code{\link[mlr:tuneParams]{tuneParams}}
 }

@@ -1,5 +1,5 @@
 ---
-title: "SmartML: Self-Drive machine learning projects"
+title: "DriveML: Self-Drive machine learning projects"
 subtitle: "Automated machine learning classification model functions"
 author: "Dayananda Ubrangala, Sayan Putatunda, Kiran R, Ravi Prasad Kondapalli"
 date: "`r Sys.Date()`"
@@ -19,31 +19,26 @@ vignette: >
 ```{r setup, include=FALSE}
 library(rmarkdown)
 library(SmartEDA)
-library(SmartML)
+library(DriveML)
 library(knitr)
-library(scales)
 library(ggplot2)
+library(tidyr)
 ```
-
 
 ## 1. Introduction
 
-The document introduces the **SmartML** package and how it can help you to build effortless machine learning classification models in short period
+The document introduces the **DriveML** package and how it can help you to build effortless machine learning binary classification models in a short period.
 
-  **SmartML** is a series of functions sucha as `AutoDataPrep`, `AutoMAR`, `autoMLmodel`.  **SmartML** automates some of the most difficult machine learning functions such as data exploratory analysis, data cleaning, data tranformations, feature engineering, model training, model validation, model tuning and model selection. 
+**DriveML** is a series of functions such as `AutoDataPrep`, `AutoMAR`, `autoMLmodel`.  **DriveML** automates some of the complicated machine learning functions such as exploratory data analysis, data pre-processing, feature engineering, model training, model validation, model tuning and model selection. 
   
-  
-  This package automates following steps on any input dataset for machine learning classification problems, 
+This package automates the following steps on any input dataset for machine learning classification problems
 
-1. Exploratory data analysis using SmartEDA functions
-    + Generate automated EDA report in HTML format
-
-2. Data cleaning
+1. Data cleaning
     + Replacing NA, infinite values
     + Removing duplicates
     + Cleaning feature names
 
-3. Feature engineering
+2. Feature engineering
     + Missing at random features
     + Missing variable imputation
     + Outlier treatment  - Oultier flag and imputation with 5th or 95th percentile value
@@ -53,7 +48,7 @@ The document introduces the **SmartML** package and how it can help you to build
     + Categorical feature engineering - one hot encoding
     + Feature selection using zero variance, correlation and AUC method
     
-4. Model training and validation
+3. Model training and validation
     + Automated test and validation set creations
     + Hyperparameter tuing using random search
     + Mutliple binary classification included like logistic regression, randomForest, xgboost, glmnet, rpart
@@ -61,51 +56,62 @@ The document introduces the **SmartML** package and how it can help you to build
     + Model plots like training and testing ROC curve, threshold plot
     + Probaility scores and model objects 
 
-5. Model Explanation
+4. Model Explanation
     + Lift plot
     + Partial dependence plot
     + Feature importance plot
 
-6. Model report 
+5. Model report 
     + model output in rmarkdown html format
 
-To summarize, SmartML package helps in getting the complete Machine learning classification model just by running the function instead of writing lengthy r code.
+Additionally, we are providing a function SmartEDA for Exploratory data analysis that generates automated EDA report in HTML format to understand the distributions of the data. Please note there are some dependencies on some other R pacakges such as MLR, caret, data.table, ggplot2, etc. for some specific task.
 
-## 2. Functionalities of SmartML
+To summarize, DriveML package helps in getting the complete Machine learning classification model just by running the function instead of writing lengthy r code.
 
-The SmartML R package has four unique functionalities as
+#### Missing not at random features
 
-1. Data Exploration
-    + SmartEDA has a complete exploratory data analysis function
+Algorithm: Missing at random features
 
-2. Data preparations
-    + AutoDataPrep function to generate a novel features based on the functional understanding of the dataset
+1. Select all the missing features X_i where i=1,2,…..,N.
+2. For i=1 to N:
+    + Define Y_i, which will have value of 1 if X_i has a missing value, 0 if X_i is not having missing value
+    + Impute all X_(i+1 ) 〖to X〗_(N ) variables using imputation method
+    + Fit binary classifier f_m to the training data using Y_i  ~  X_(i+1 ) 〖+⋯+ X〗_(N )
+    + Calculate AUC ∝_ivalue between actual Y_i and predicted Y ̂_i
+    + If  ∝_i  is low then the missing values in X_i  are missing at random,Y_i  to be dropped
+    + Repeat steps 1 to 4 for all the independent variables in the original dataset
+
+## 2. Functionalities of DriveML
+
+The DriveML R package has three unique functionalities as
+
+1. Data Pre-processing and Data Preparation
+    + `autoDataPrep` function to generate a novel features based on the functional understanding of the dataset
     
-3. Machine learning models
-    + autoMLmodel function to develope baseline machine learning models using regression and tree based classfication techniques
+2. Building Machine Learning Models
+    + `autoMLmodel` function to develope baseline machine learning models using regression and tree based classfication techniques
 
-4. Model report
-    + mlreport function to print the machine learning model outcome in HTML format
+3. Generating Model Report
+    + `autoMLReport` function to print the machine learning model outcome in HTML format
 
-## 3. SmartML: Machine learning classfication model
+## 3. Machine learning classfication model use-case using DriveML 
 
-#### About data
+#### About the dataset
 
 This database contains 76 attributes, but all published experiments refer to using a subset of 14 of them. In particular, the Cleveland database is the only one that has been used by ML researchers to this date. The "goal" field refers to the presence of heart disease in the patient. It is integer valued from 0 (no presence) to 4.
 
-Data Source [Kaggle](https://archive.ics.uci.edu/ml/datasets/Heart+Disease).
+Data Source `https://archive.ics.uci.edu/ml/datasets/Heart+Disease`
 
-Install the package "SmartML" to get the example data set.
+Install the package "DriveML" to get the example data set.
 
 ```{r eda-c3-r, warning=FALSE,eval=F}
-install.packages("SmartML")
-library("SmartML")
+library("DriveML")
 library("SmartEDA")
 ## Load sample dataset from ISLR pacakge
-heart = SmartML::heart
+heart = DriveML::heart
 ```
 
-more detailed attribute information is there in `SmartML` help page
+more detailed attribute information is there in `DriveML` help page
 
 ### 3.1 Data Exploration
 
@@ -155,9 +161,9 @@ paged_table(snc)
 
 #### Distributions of Numerical variables
 
-* Box plots for all numerical variables vs categorical dependent variable - Bivariate comparision only with categories
+Box plots for all numerical variables vs categorical dependent variable - Bivariate comparison only with classes
 
-Boxplot for all the numeric attributes by each category of **target_var**
+Boxplot for all the numerical attributes by each class of the **target variable**
 
 ```{r bp3.1,warning=FALSE,eval=T,include=T,fig.align='center',fig.height=7,fig.width=7}
 plot4 <- ExpNumViz(heart,target="target_var",type=1,nlim=3,fname=NULL,Page=c(2,2),sample=8)
@@ -173,8 +179,7 @@ rownames(et100)<-NULL
 
 **Cross tabulation with target_var variable**
 
-  * Custom tables between all categorical independent variables and target_var variable **target_var** 
-
+Custom tables between all categorical independent variables and the target variable
 
 ```{r ed3.4, warning=FALSE,eval=F,include=T}
 ExpCTable(Carseats,Target="Urban",margin=1,clim=10,nlim=3,round=2,bin=NULL,per=F)
@@ -183,7 +188,6 @@ ExpCTable(Carseats,Target="Urban",margin=1,clim=10,nlim=3,round=2,bin=NULL,per=F
 ```{r ed3.5,warning=FALSE,eval=T,render=et100,echo=F,out.height=8,out.width=8}
 kable(et100,"html")
 ```
-
 
 #### Distributions of categorical variables
 
@@ -209,14 +213,13 @@ ExpOutliers(heart, varlist = c("oldpeak","trestbps","chol"), method = "boxplot",
 kable(outlier_summ,"html")
 ```
 
-
 ### 3.2 Data preparations using `autoDataprep`
 
 ```{r , warning=FALSE,eval=T,include=T}
-dateprep <- autoDataprep(data = heart,
-                             target = 'target_var',
-                             missimpute = 'default',
-                             auto_mar = FALSE,
+dateprep <- autoDataprep(data = heart, 
+                         target = 'target_var',
+                         missimpute = 'default',
+                         auto_mar = FALSE,
                              mar_object = NULL,
                              dummyvar = TRUE,
                              char_var_limit = 15,
@@ -226,14 +229,12 @@ dateprep <- autoDataprep(data = heart,
                              uid = NULL,
                              onlykeep = NULL,
                              drop = NULL)
-printautoDataprep(dateprep)
 train_data <- dateprep$master_data
 ```
 
-
 ### 3.3 Machine learning models using `autoMLmodel`
 
-Automated training, tuning and validation of machine learning models. This function includes following binary classification techniques
+Automated training, tuning and validation of machine learning models. This function includes the following binary classification techniques
 
     + Logistic regression - logreg
     + Regularised regression - glmnet
@@ -247,14 +248,14 @@ mymodel <- autoMLmodel( train = heart,
                         test = NULL,
                         target = 'target_var',
                         testSplit = 0.2,
-                        maxLevels = 100,
-                        tuneIters = 10,
+                        tuneIters = 100,
                         tuneType = "random",
                         models = "all",
                         varImp = 10,
                         liftGroup = 50,
                         maxObs = 4000,
                         uid = NULL,
+                        htmlreport = FALSE,
                         seed = 1991)
 ```
 
@@ -268,15 +269,15 @@ kable(performance, "html")
 
 ```
 
-Randomforest model ROC curve and variable importance
+Randomforest model Receiver Operating Characteristic (ROC) and the variable Importance
 
-Training data set ROC
+Training dataset ROC
 ```{r o1,warning=FALSE,render=mymodel,eval=T,include=T,fig.align='center',fig.height=4,fig.width=7}
 TrainROC <- mymodel$trainedModels$randomForest$modelPlots$TrainROC
 TrainROC
 ```
 
-Test data set ROC
+Test dataset ROC
 ```{r o10,warning=FALSE,render=mymodel,eval=T,include=T,fig.align='center',fig.height=4,fig.width=7}
 TestROC <- mymodel$trainedModels$randomForest$modelPlots$TestROC
 TestROC
@@ -293,3 +294,8 @@ Threshold
 Threshold <- mymodel$trainedModels$randomForest$modelPlots$Threshold
 Threshold
 ```
+
+
+
+
+

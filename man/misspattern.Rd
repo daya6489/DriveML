@@ -4,7 +4,7 @@
 \alias{misspattern}
 \title{Missing pattern analysis for missing data}
 \usage{
-misspattern(data, mfeature, drop = 0.99, print = F)
+misspattern(data, mfeature, drop = 0.99, print = FALSE)
 }
 \arguments{
 \item{data}{[data.frame | Required] data set with missing values}
@@ -19,5 +19,10 @@ misspattern(data, mfeature, drop = 0.99, print = F)
 final variable list, summary of missing data analysis
 }
 \description{
-this function for summarise the missing variable, missing pattern identification, classifying the columns based on pattern of missing values.
+This function is used to summarise the missing variable, missing pattern identification and classifying the columns based on the pattern of missing values.
+}
+\examples{
+## Sample iris data
+mdata <- iris
+mobject <- misspattern(mdata, mfeature = c("Sepal.Length", "Petal.Length"), drop = 0.99, print = F)
 }

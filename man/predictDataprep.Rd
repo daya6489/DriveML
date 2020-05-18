@@ -17,3 +17,16 @@ master data set same as train data set
 \description{
 this function can be used for autoDataprep objects to generate the same for validation
 }
+\examples{
+## Sample train data set
+train <- heart[1:200, ]
+test <- heart[201:350, ]
+traindata <- autoDataprep(train, target = "target_var", missimpute = "default",
+dummyvar = TRUE, aucv = 0.02, corr = 0.98, outlier_flag = TRUE,
+interaction_var = TRUE, frequent_var = TRUE)
+train <- traindata$master
+
+## Predict same features for test set
+test <- predictDataprep(traindata, test)
+
+}

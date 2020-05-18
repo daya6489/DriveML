@@ -1,17 +1,17 @@
 ## ----setup, include=FALSE------------------------------------------------
 library(rmarkdown)
 library(SmartEDA)
-library(SmartML)
+library(DriveML)
 library(knitr)
-library(scales)
 library(ggplot2)
+library(tidyr)
 
 ## ----eda-c3-r, warning=FALSE,eval=F--------------------------------------
-#  install.packages("SmartML")
-#  library("SmartML")
+#  install.packages("DriveML")
+#  library("DriveML")
 #  library("SmartEDA")
 #  ## Load sample dataset from ISLR pacakge
-#  heart = SmartML::heart
+#  heart = DriveML::heart
 
 ## ----od_1,warning=FALSE,eval=F,include=T---------------------------------
 #  # Overview of the data - Type = 1
@@ -90,16 +90,14 @@ mymodel <- autoMLmodel( train = heart,
                         test = NULL,
                         target = 'target_var',
                         testSplit = 0.2,
-                        maxLevels = 100,
                         tuneIters = 10,
                         tuneType = "random",
-                        resampleMethod = "CV",
-                        resampleIters = 5,
                         models = "all",
                         varImp = 10,
                         liftGroup = 50,
                         maxObs = 4000,
                         uid = NULL,
+                        htmlreport = FALSE,
                         seed = 1991)
 
 ## ----out00,warning=FALSE,eval=T,render=mymodel, echo=F,out.height=8,out.width=8----
