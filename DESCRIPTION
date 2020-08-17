@@ -16,5 +16,5 @@ Encoding: UTF-8
 BugReports: https://github.com/daya6489/DriveML/issues
 LazyData: true
 Repository: CRAN
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr

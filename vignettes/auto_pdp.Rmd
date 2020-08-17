@@ -1,0 +1,44 @@
+---
+title: "DriveML: partial dependence plots"
+output: 
+  rmarkdown::html_vignette:
+    fig_caption: yes
+    toc: true
+    css: custom.css
+vignette: >
+  %\VignetteIndexEntry{Vignette Title Subtitle}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\SweaveUTF8
+  %\VignetteIndexEntry{Information Value: Usage Examples}  
+---
+  
+```{r setup, include=FALSE}
+library(rmarkdown)
+library(SmartEDA)
+library(DriveML)
+library(knitr)
+library(ggplot2)
+library(tidyr)
+```
+
+## 1. Introduction
+
+Partial dependence plots (PDPs) help you to visualize the relationship between a subset of the features and the response while accounting for the average effect of the other predictors in the model. They are particularly effective with black box models like random forests, gradient boosting, etc.
+
+```{r eda-c3-r, warning=FALSE,eval=F}
+library("DriveML")
+heart = DriveML::heart
+```
+
+## 2. How to use autoPDP funtion?
+
+autoPDP will support ML model outcome from different R pacakges like randomforest, MLR etc. 
+
+### 2. How to plot PDP using DriveML model object
+**heart.model*"** is the in built DriveML model object.
+
+```{r od_2, warning=FALSE, eval=T, include=T}
+mymodel = DriveML::heart.model
+```
+

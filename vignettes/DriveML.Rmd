@@ -107,7 +107,6 @@ Install the package "DriveML" to get the example data set.
 ```{r eda-c3-r, warning=FALSE,eval=F}
 library("DriveML")
 library("SmartEDA")
-## Load sample dataset from ISLR pacakge
 heart = DriveML::heart
 ```
 
@@ -229,6 +228,8 @@ dateprep <- autoDataprep(data = heart,
                              uid = NULL,
                              onlykeep = NULL,
                              drop = NULL)
+
+print(dateprep)
 train_data <- dateprep$master_data
 ```
 
