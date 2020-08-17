@@ -229,6 +229,8 @@ dateprep <- autoDataprep(data = heart,
                              uid = NULL,
                              onlykeep = NULL,
                              drop = NULL)
+
+print(dateprep)
 train_data <- dateprep$master_data
 ```
 

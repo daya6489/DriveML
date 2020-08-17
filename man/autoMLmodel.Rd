@@ -10,11 +10,11 @@ autoMLmodel(
   score = NULL,
   target = NULL,
   testSplit = 0.2,
-  tuneIters = 200,
+  tuneIters = 10,
   tuneType = "random",
   models = "all",
   perMetric = "auc",
-  varImp = 20,
+  varImp = 10,
   liftGroup = 50,
   maxObs = 10000,
   uid = NULL,
@@ -46,12 +46,12 @@ autoMLmodel(
 
 \item{models}{[character | Optional] which models to train. Default option is all. Please find below the names for each of the methods
 \itemize{
-\item {randomForest}{random forests using the randomForest package}
-\item {ranger}{random forests using the ranger package}
-\item {xgboost}{gradient boosting using xgboost}
-\item {rpart}{decision tree classification using rpart}
-\item {glmnet}{regularised regression  from glmnet}
-\item {logreg}{logistic regression from stats}
+\item {randomForest}{ - random forests using the randomForest package}
+\item {ranger}{ - random forests using the ranger package}
+\item {xgboost}{ - gradient boosting using xgboost}
+\item {rpart}{ - decision tree classification using rpart}
+\item {glmnet}{ - regularised regression  from glmnet}
+\item {logreg}{ - logistic regression from stats}
 }}
 
 \item{perMetric}{[character | Optional] model validation metric. Default is "auc"
