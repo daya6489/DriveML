@@ -1,8 +1,10 @@
 <img src = "https://github.com/daya6489/DriveML/blob/master/man/figures/driveml_image.PNG">
 
-
-
 [![CRAN status](https://www.r-pkg.org/badges/version/DriveML)](https://cran.r-project.org/package=DriveML)
+
+[![Downloads](http://cranlogs.r-pkg.org/badges/DriveML)](https://cran.r-project.org/package=DriveML)
+
+[![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DriveML)](https://cran.r-project.org/package=DriveML)
 
 ---
 
@@ -54,7 +56,7 @@ Data source [UCI](https://archive.ics.uci.edu/ml/datasets/heart+Disease)
 	library("DriveML")
 	library("SmartEDA")
 	## Load heart disease dataset 
-	heart <- DriveML::heart
+	data(heart)
 	
 ```
 

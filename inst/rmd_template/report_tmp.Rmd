@@ -82,14 +82,14 @@ for(j in exe_modl){
 **Training data set**
 
 ```{r dl_11,warning=FALSE,eval=T,render=t1,echo=F}
-t1 <- t1[t1$Obs!=0,]; rownames(t1) <- NULL
+t1 <- t1[t1$Value!=0,]; rownames(t1) <- NULL
 kable(t1)
 ```
 
 **Validation data set**
 
 ```{r dl_12,warning=FALSE,eval=T,render=t2,echo=F}
-t2 <- t2[t2$Obs!=0,]; rownames(t2) <- NULL
+t2 <- t2[t2$Value!=0,]; rownames(t2) <- NULL
 kable(t2)
 ```
 
@@ -97,7 +97,7 @@ kable(t2)
 
 ```{r dl_13,warning=FALSE,eval=T,render=t3,echo=F}
 if(!is.null(t3)) {
-  t3 <- t3[t3$Obs!=0,]; rownames(t3) <- NULL
+  t3 <- t3[t3$Value!=0,]; rownames(t3) <- NULL
   kable(t3)
 } else {
     cat("No score data set")

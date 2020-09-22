@@ -100,6 +100,7 @@ autoMLmodel <- function(train,  test = NULL,  score = NULL, target = NULL,
     datsscore <- ExpData(score)
     if (length(nvar) > 0) stop (cat("List of variables are not there in score data set are: ", "\n", paste0(nvar, "\n")))
   }
+
   auo <- autoSample(x = train, y = target, seed = seed, maxObs = maxObs)
   fullTasks <- auoTasks <- list()
   auoTasks$fullTask <- generateTask(x = auo, y = target, positive = positive, maxLevels = 100)

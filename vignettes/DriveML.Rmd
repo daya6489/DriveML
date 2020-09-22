@@ -108,7 +108,7 @@ Install the package "DriveML" to get the example data set.
 library("DriveML")
 library("SmartEDA")
 ## Load sample dataset from ISLR pacakge
-heart = DriveML::heart
+data(heart)
 ```
 
 more detailed attribute information is there in `DriveML` help page
