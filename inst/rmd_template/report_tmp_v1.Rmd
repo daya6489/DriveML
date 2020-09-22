@@ -36,14 +36,14 @@ mldata <- params$mldata
 
 **Overview of the data**
 
-```{r mdp1,warning=FALSE,eval=T,render=t1,echo=F}
+```{r mdp1,warning=FALSE,eval=T,echo=F}
 typ1 <- mldata$datasummary$type1
 kable(typ1)
 ```
 
 **Variable summary**
 
-```{r mdp2,warning=FALSE,eval=T,render=t1,echo=F}
+```{r mdp2,warning=FALSE,eval=T,echo=F}
 typ2 <- mldata$datasummary$type2
 paged_table(typ2)
 ```
@@ -59,13 +59,21 @@ print(mldata$var_list$MAR_col)
 ### Missing imputation
 
 ```{r mdp4, warning = FALSE, eval = T, echo = F}
+
+if(names(mldata$call) %in% "missimpute") {
+
 if(mldata$call$missimpute=="default") {
   mdd <- data.frame(Variable_type = c("Factor", "Integer", "Numeric", "Character"),
   Impute_method = c("Mode value", "Mean value", "Median value", "Constant value"))
   kable(mdd)
     } else {
     cat("Missing replaced with", "{", print(mldata$call$missimpute), "\n") }
-
+  } else 
+  {
+    mdd <- data.frame(Variable_type = c("Factor", "Integer", "Numeric", "Character"),
+  Impute_method = c("Mode value", "Mean value", "Median value", "Constant value"))
+  kable(mdd)
+  }
 ```
 
 ### Feature engineering
@@ -81,7 +89,7 @@ kable(ccd)
 ##### Outlier variable
 
 ```{r mdp6, warning = FALSE, eval = T, echo = F}
-print(mldata$outlier_summary)
+print(mldata$var_list$outlier_summary)
 ```
 
 ##### Interaction variables using multiplaction method
@@ -91,7 +99,7 @@ Calculated ineraction between two continuous variables using multiplication meth
 List of variables calculated are below
 
 ```{r mdp7, warning = FALSE, eval = T, echo = F}
-cc  <- mldata$overall_variable
+cc  <- mldata$var_list$overall_variable
 print(cc[grep("Inter_", cc)])
 ```
 
@@ -103,7 +111,7 @@ The frequent transformer counts each categorical variable in the data set
 List of variables calculated are below
 
 ```{r mdp8, warning = FALSE, eval = T, echo = F}
-cc  <- mldata$overall_variable
+cc  <- mldata$var_list$overall_variable
 print(cc[grep("Freq_t", cc)])
 ```
 
@@ -114,7 +122,7 @@ Date transformer retrieves any date values like month, year, quarter and week
 List of variables calculated are below
 
 ```{r mdp9, warning = FALSE, eval = T, echo = F}
-cc  <- mldata$overall_variable
+cc  <- mldata$var_list$overall_variable
 print(cc[grep("datet_", cc)])
 ```
 
@@ -123,7 +131,7 @@ print(cc[grep("datet_", cc)])
 One hot coding for all categorical variables
 
 ```{r mdp10, warning = FALSE, eval = T, echo = F}
-cc  <- mldata$var_list$Dummy_col
+cc  <- mldata$var_list$overall_variable
 print(cc)
 
 ```
@@ -133,7 +141,7 @@ print(cc)
 ##### Zero variance
 
 ```{r mdp11, warning = FALSE, eval = T, echo = F}
-cc  <- mldata$zerovariance
+cc  <- mldata$var_list$zerovariance
 print(cc)
 ```
 
@@ -143,15 +151,20 @@ print(cc)
 Highly correlated variables
 
 ```{r mdp12, warning = FALSE, eval = T, echo = F}
-cc  <- mldata$cor_var
+cc  <- mldata$var_list$cor_var
 print(cc)
 ```
 
 **Correaltion table**
 
 ```{r mdp121,warning=FALSE,eval=T, echo=F}
-cc  <- mldata$raw_list$Num_Correlation
-paged_table(cc)
+cc  <- data.frame(mldata$raw_list$Num_Correlation)
+if(nrow(cc)>1){
+  paged_table(cc)
+} else {
+  print("correlation value not found")
+}
+
 ```
 
 ##### Area Under the curve
@@ -159,7 +172,7 @@ paged_table(cc)
 Top predictors based on AUC value against dependent variables
 
 ```{r mdp13, warning = FALSE, eval = T, echo = F}
-cc  <- mldata$auc_var
+cc  <- mldata$var_list$auc_var
 print(cc)
 ```
 
@@ -171,16 +184,25 @@ cc  <- mldata$raw_list$AUC_value
 if(nrow(cc) > 0){
   rownames(cc) <- NULL
   cc <- cc[, c(2:3)]
+  paged_table(cc)
+} else {
+  print("No AUC features generated")
 }
 
-paged_table(cc)
 ```
 
 ### Final table view - head
 
-```{r mdp131,warning=FALSE,eval=T, echo=F}
+```{r mdp13111,warning=FALSE,eval=T, echo=F}
+
 cc  <- mldata$master_data
-paged_table(head(cc, 5))
+if(nrow(cc)>0){
+paged_table(head(cc, 5))  
+} else 
+{
+  print("data is not prepared")
+  }
+
 ```
 
 ## Machine Learning Classification Model
@@ -244,14 +266,16 @@ for(j in exe_modl){
 **Training data set**
 
 ```{r dl_11,warning=FALSE,eval=T,render=t1,echo=F}
-t1 <- t1[t1$Obs!=0,]; rownames(t1) <- NULL
+t1 <- t1[t1$Value!=0,]; 
+rownames(t1) <- NULL
 kable(t1)
 ```
 
 **Validation data set**
 
 ```{r dl_12,warning=FALSE,eval=T,render=t2,echo=F}
-t2 <- t2[t2$Obs!=0,]; rownames(t2) <- NULL
+t2 <- t2[t2$Value!=0,]; 
+rownames(t2) <- NULL
 kable(t2)
 ```
 
@@ -259,7 +283,7 @@ kable(t2)
 
 ```{r dl_13,warning=FALSE,eval=T,render=t3,echo=F}
 if(!is.null(t3)) {
-  t3 <- t3[t3$Obs!=0,]; rownames(t3) <- NULL
+  t3 <- t3[t3$Value!=0,]; rownames(t3) <- NULL
   kable(t3)
 } else {
     cat("No score data set")

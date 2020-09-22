@@ -54,7 +54,7 @@ Data source [UCI](https://archive.ics.uci.edu/ml/datasets/heart+Disease)
 	library("DriveML")
 	library("SmartEDA")
 	## Load heart disease dataset 
-	heart <- DriveML::heart
+	data(heart)
 	
 ```
 
@@ -137,3 +137,4 @@ autoMLReport(mlobject = small_ml_random, mldata = small_data, op_file = "driveML
 
 ## Articles
 
+The pre-print version of the paper on DriveML is available at ArXiv at- https://arxiv.org/pdf/2005.00478.pdf. Also, currently the paper is under review at the Journal of Open Source Software (JOSS).

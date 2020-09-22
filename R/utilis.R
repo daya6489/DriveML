@@ -131,13 +131,12 @@ generateHyperParams <- function(learners = NULL, task){
                                  makeIntegerParam(id = "nrounds", lower = 50, upper = 500),
                                  makeDiscreteParam(id = "early_stopping_rounds", values = 10))
 
-  hypers$randomforest <- makeParamSet(makeIntegerParam(id = "mtry", lower = 3, upper = 10),
+  hypers$randomforest <- makeParamSet(makeIntegerParam(id = "mtry", lower = 2, upper = 10),
                                       makeIntegerParam(id = "ntree", lower = 50, upper = 600),
                                       makeLogicalLearnerParam(id = "importance", default = TRUE),
                                       makeIntegerParam(id = "nodesize", lower = 1, upper = 20))
 
-  hypers$ranger <- makeParamSet(makeIntegerParam(id = "mtry", lower = 2, upper = 10),
-                                makeDiscreteLearnerParam(id = "importance", values = c("impurity", "permutation"), default = "permutation", tunable = FALSE),
+  hypers$ranger <- makeParamSet(makeDiscreteLearnerParam(id = "importance", values = c("impurity", "permutation"), default = "permutation", tunable = FALSE),
                                 makeIntegerParam(id = "min.node.size", lower = 5, upper = 10),
                                 makeIntegerParam(id = "num.trees", lower = 50, upper = 600))
 

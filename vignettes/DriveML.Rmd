@@ -107,7 +107,8 @@ Install the package "DriveML" to get the example data set.
 ```{r eda-c3-r, warning=FALSE,eval=F}
 library("DriveML")
 library("SmartEDA")
-heart = DriveML::heart
+## Load sample dataset from ISLR pacakge
+data(heart)
 ```
 
 more detailed attribute information is there in `DriveML` help page
