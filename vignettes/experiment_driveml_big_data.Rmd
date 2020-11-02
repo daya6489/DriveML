@@ -1,0 +1,51 @@
+---
+title: "Experiment of DriveML R package - Big Data set"
+author: "Dayanand, Sayan, Ravi, Kiran R"
+date: "16/06/2021"
+output: html_document
+---
+
+```{r setup0, include=TRUE,eval=FALSE, warning=FALSE}
+library(DriveML)    ## automl package
+library(data.table) ## data wrangling package
+library(caret)      ## ML wrapper package
+library(mlr)        ## ML wrapper package
+library(h2o)        ## automl package
+library(OneR)       ## automl package
+library(Metrics)    ## auc function
+library(autoxgboost)## automl package
+```
+
+```{r setup, include=FALSE, eval=TRUE, warning=FALSE}
+library(DriveML)    ## automl package
+library(data.table) ## data wrangling package
+library(caret)      ## ML wrapper package
+library(mlr)        ## ML wrapper package
+library(h2o)        ## automl package
+library(OneR)       ## automl package
+library(Metrics)    ## auc function
+library(autoxgboost)## automl package
+```
+
+## Rain in Australia
+
+data source : **https://www.kaggle.com/jsphyg/weather-dataset-rattle-package**
+
+#### Content
+
+`This dataset contains about 10 years of daily weather observations from many locations across Australia.
+
+RainTomorrow is the target variable to predict. It means -- did it rain the next day, Yes or No? This column is Yes if the rain for that day was 1mm or more.`
+
+##### Problem Statement
+
+Predict next-day rain by training classification models on the target variable RainTomorrow
+
+###### Source & Acknowledgements
+Observations were drawn from numerous weather stations. The daily observations are available from **http://www.bom.gov.au/climate/data.**
+An example of latest weather observations in Canberra: **http://www.bom.gov.au/climate/dwo/IDCJDW2801.latest.shtml**
+
+Definitions adapted from **http://www.bom.gov.au/climate/dwo/IDCJDW0000.shtml**
+Data source: **http://www.bom.gov.au/climate/dwo/ and http://www.bom.gov.au/climate/data.**
+
+Copyright Commonwealth of Australia 2010, Bureau of Meteorology.

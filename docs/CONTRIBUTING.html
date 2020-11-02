@@ -8,21 +8,29 @@
 
 <title>Contributing to DriveML development • DriveML</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="pkgdown.css" rel="stylesheet">
@@ -30,7 +38,9 @@
 
 
 
+
 <meta property="og:title" content="Contributing to DriveML development" />
+
 
 
 
@@ -44,9 +54,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-title-body">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -68,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -86,7 +97,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/auto_pdp.html">DriveML: partial dependence plots</a>
+      <a href="articles/experiment_driveml_big_data.html">Experiment of DriveML R package - Big Data set</a>
+    </li>
+    <li>
+      <a href="articles/experiment_driveml_large_data.html">Experiment of DriveML R package - Large Data set</a>
+    </li>
+    <li>
+      <a href="articles/experiment_driveml_medium_data.html">Experiment of DriveML R package - Medium Data set</a>
+    </li>
+    <li>
+      <a href="articles/experiment_driveml_small_data.html">Experiment of DriveML R package - Small Data set</a>
     </li>
   </ul>
 </li>
@@ -94,9 +114,13 @@
   <a href="news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/daya6489/DriveML/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -104,6 +128,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -127,7 +152,7 @@
 <ol>
 <li>
 <strong>Packages</strong> should be loaded at the top of the script, so it’s easy to see which ones the example needs.</li>
-<li>The easiest way to include <strong>data</strong> is to use <code><a href="https://www.rdocumentation.org/packages/base/topics/dput">dput()</a></code> to generate the R code to recreate it.</li>
+<li>The easiest way to include <strong>data</strong> is to use <code><a href="https://rdrr.io/r/base/dput.html">dput()</a></code> to generate the R code to recreate it.</li>
 <li>Spend a little bit of time ensuring that your <strong>code</strong> is easy for others to read:
 <ul>
 <li>make sure you’ve used spaces and your variable names are concise, but informative</li>
@@ -137,7 +162,7 @@
 </li>
 </ol>
 <p>You can check you have actually made a reproducible example by starting up a fresh R session and pasting your script in.</p>
-<p>(Unless you’ve been specifically asked for it, please don’t include the output of <code><a href="https://www.rdocumentation.org/packages/utils/topics/sessionInfo">sessionInfo()</a></code>.)</p>
+<p>(Unless you’ve been specifically asked for it, please don’t include the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo()</a></code>.)</p>
 </div>
 <div id="pull-requests" class="section level2">
 <h2 class="hasAnchor">
@@ -153,10 +178,8 @@
 <p>If you’re not familiar with git or GitHub, please start by reading <a href="http://r-pkgs.had.co.nz/git.html" class="uri">http://r-pkgs.had.co.nz/git.html</a></p>
 <p>Pull requests will be evaluated against the a checklist:</p>
 <ol>
-<li>
-<strong>Motivation</strong>. Your pull request should clearly and concisely motivates the need for change. Plesae describe the problem your PR addresses and show how your pull request solves it as concisely as possible. Also include this motivation in NEWS so that when a new release of DriveML comes out it’s easy for users to see what’s changed. Add your item at the top of the file and use markdown for formatting. The news item should end with (@yourGithubUsername, #the_issue_number).</li>
-<li>
-<strong>Only related changes</strong>. Before you submit your pull request, please check to make sure that you haven’t accidentally included any unrelated changes. These make it harder to see exactly what’s changed, and to evaluate any unexpected side effects. Each PR corresponds to a git branch, so if you expect to submit multiple changes make sure to create multiple branches. If you have multiple changes that depend on each other, start with the first one and don’t submit any others until the first one has been processed.</li>
+<li><p><strong>Motivation</strong>. Your pull request should clearly and concisely motivates the need for change. Plesae describe the problem your PR addresses and show how your pull request solves it as concisely as possible. Also include this motivation in NEWS so that when a new release of DriveML comes out it’s easy for users to see what’s changed. Add your item at the top of the file and use markdown for formatting. The news item should end with (@yourGithubUsername, #the_issue_number).</p></li>
+<li><p><strong>Only related changes</strong>. Before you submit your pull request, please check to make sure that you haven’t accidentally included any unrelated changes. These make it harder to see exactly what’s changed, and to evaluate any unexpected side effects. Each PR corresponds to a git branch, so if you expect to submit multiple changes make sure to create multiple branches. If you have multiple changes that depend on each other, start with the first one and don’t submit any others until the first one has been processed.</p></li>
 <li><p>If fixing a bug or adding a new feature to a non-graphical function, please add a <a href="https://github.com/daya6489/DriveML/tree/master/tests/testthat">testthat</a> unit test.</p></li>
 <li><p>If you’re adding new parameters or a new function, you’ll also need to document them with roxygen. Make sure to re-run devtools::document() on the code before submitting.</p></li>
 </ol>
@@ -166,7 +189,14 @@
 
   </div>
 
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
+  </div>
+
 </div>
+
 
 
       <footer>
@@ -175,13 +205,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

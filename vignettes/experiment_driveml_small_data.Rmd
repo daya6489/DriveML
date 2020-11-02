@@ -1,0 +1,51 @@
+---
+title: "Experiment of DriveML R package - Small Data set"
+author: "Dayanand, Sayan, Ravi, Kiran R"
+date: "16/06/2021"
+output: html_document
+---
+
+```{r setup0, include=TRUE,eval=FALSE, warning=FALSE}
+library(DriveML)    ## automl package
+library(data.table) ## data wrangling package
+library(caret)      ## ML wrapper package
+library(mlr)        ## ML wrapper package
+library(h2o)        ## automl package
+library(OneR)       ## automl package
+library(Metrics)    ## auc function
+library(autoxgboost)## automl package
+```
+
+```{r setup, include=FALSE, eval=TRUE, warning=FALSE}
+library(DriveML)    ## automl package
+library(data.table) ## data wrangling package
+library(caret)      ## ML wrapper package
+library(mlr)        ## ML wrapper package
+library(h2o)        ## automl package
+library(OneR)       ## automl package
+library(Metrics)    ## auc function
+library(autoxgboost)## automl package
+```
+
+## Heart Disease UCI
+
+data source : **https://archive.ics.uci.edu/ml/datasets/Heart+Disease**
+
+#### Content
+
+This database contains 76 attributes, but all published experiments refer to using a subset of 14 of them. In particular, the Cleveland database is the only one that has been used by ML researchers to
+this date. The "goal" field refers to the presence of heart disease in the patient. It is integer valued from 0 (no presence) to 4.
+
+
+**Acknowledgements:**
+
+Creators:
+
+Hungarian Institute of Cardiology. Budapest: Andras Janosi, M.D.
+University Hospital, Zurich, Switzerland: William Steinbrunn, M.D.
+University Hospital, Basel, Switzerland: Matthias Pfisterer, M.D.
+V.A. Medical Center, Long Beach and Cleveland Clinic Foundation: Robert Detrano, M.D., Ph.D.
+Donor:
+David W. Aha (aha '@' ics.uci.edu) (714) 856-8779
+
+

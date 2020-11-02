@@ -8,21 +8,29 @@
 
 <title>Automated column transformer — generateFeature • DriveML</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="Automated column transformer — generateFeature" />
 
+<meta property="og:title" content="Automated column transformer — generateFeature" />
 <meta property="og:description" content="This function automatically scans through each variable and generate features based on the type listed in the &quot;details&quot;" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -71,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -89,7 +98,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/auto_pdp.html">DriveML: partial dependence plots</a>
+      <a href="../articles/experiment_driveml_big_data.html">Experiment of DriveML R package - Big Data set</a>
+    </li>
+    <li>
+      <a href="../articles/experiment_driveml_large_data.html">Experiment of DriveML R package - Large Data set</a>
+    </li>
+    <li>
+      <a href="../articles/experiment_driveml_medium_data.html">Experiment of DriveML R package - Medium Data set</a>
+    </li>
+    <li>
+      <a href="../articles/experiment_driveml_small_data.html">Experiment of DriveML R package - Small Data set</a>
     </li>
   </ul>
 </li>
@@ -97,9 +115,13 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/daya6489/DriveML/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -107,24 +129,23 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Automated column transformer</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/daya6489/DriveML/blob/master/R/autoFeature.R'><code>R/autoFeature.R</code></a></small>
     <div class="hidden name"><code>generateFeature.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
     <p>This function automatically scans through each variable and generate features based on the type listed in the "details"</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>generateFeature</span>(<span class='no'>data</span>, <span class='no'>varlist</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"Frequent"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>generateFeature</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>varlist</span>, type <span class='op'>=</span> <span class='st'>"Frequent"</span>, method <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -145,11 +166,10 @@
       <td><p>[text  | Required] input for variabe transformation for type = 'Frequent' then the method should be 'Frequency' or 'Percent'. Please refer to the "details" section to know more</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>generated transformed features</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function is for generating features based on different transformation methods such as interaction, outliers, Dummy coding, etc.</p>
@@ -170,12 +190,13 @@
 <li><p>Quarter</p></li>
 <li><p>Week</p></li>
 </ul>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Generate interaction features</span>
-<span class='fu'>generateFeature</span>(<span class='no'>heart</span>, <span class='kw'>varlist</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"cp"</span>, <span class='st'>"chol"</span>, <span class='st'>"trestbps"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"Interaction"</span>,
-<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"add"</span>)</div><div class='output co'>#&gt;      Inter_cp_chol Inter_cp_trestbps Inter_chol_trestbps
+<span class='fu'>generateFeature</span><span class='op'>(</span><span class='va'>heart</span>, varlist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cp"</span>, <span class='st'>"chol"</span>, <span class='st'>"trestbps"</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"Interaction"</span>,
+method <span class='op'>=</span> <span class='st'>"add"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Inter_cp_chol Inter_cp_trestbps Inter_chol_trestbps
 #&gt;   1:           236               148                 378
 #&gt;   2:           252               132                 380
 #&gt;   3:           205               131                 334
@@ -186,8 +207,9 @@
 #&gt; 300:           267               113                 374
 #&gt; 301:           193               144                 337
 #&gt; 302:           131               130                 261
-#&gt; 303:           237               131                 366</div><div class='input'><span class='fu'>generateFeature</span>(<span class='no'>heart</span>, <span class='kw'>varlist</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"cp"</span>, <span class='st'>"chol"</span>, <span class='st'>"trestbps"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"Interaction"</span>,
-<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"multiply"</span>)</div><div class='output co'>#&gt;      Inter_cp_chol Inter_cp_trestbps Inter_chol_trestbps
+#&gt; 303:           237               131                 366</div><div class='input'><span class='fu'>generateFeature</span><span class='op'>(</span><span class='va'>heart</span>, varlist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cp"</span>, <span class='st'>"chol"</span>, <span class='st'>"trestbps"</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"Interaction"</span>,
+method <span class='op'>=</span> <span class='st'>"multiply"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Inter_cp_chol Inter_cp_trestbps Inter_chol_trestbps
 #&gt;   1:           699               435               33785
 #&gt;   2:           500               260               32500
 #&gt;   3:           204               130               26520
@@ -200,7 +222,8 @@
 #&gt; 302:             0                 0               17030
 #&gt; 303:           236               130               30680</div><div class='input'>
 <span class='co'># Generate frequency features</span>
-<span class='fu'>generateFeature</span>(<span class='no'>heart</span>, <span class='kw'>varlist</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"cp"</span>, <span class='st'>"thal"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"Frequent"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"Percent"</span>)</div><div class='output co'>#&gt;     Freq_t_cp Freq_t_thal
+<span class='fu'>generateFeature</span><span class='op'>(</span><span class='va'>heart</span>, varlist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cp"</span>, <span class='st'>"thal"</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"Frequent"</span>, method <span class='op'>=</span> <span class='st'>"Percent"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     Freq_t_cp Freq_t_thal
 #&gt; 1        7.59        5.94
 #&gt; 2       28.71       54.79
 #&gt; 3       16.50       54.79
@@ -503,7 +526,8 @@
 #&gt; 300      7.59       38.61
 #&gt; 301     47.19       38.61
 #&gt; 302     47.19       38.61
-#&gt; 303     16.50       54.79</div><div class='input'><span class='fu'>generateFeature</span>(<span class='no'>heart</span>, <span class='kw'>varlist</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"cp"</span>, <span class='st'>"thal"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"Frequent"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"Frequency"</span>)</div><div class='output co'>#&gt;     Freq_t_cp Freq_t_thal
+#&gt; 303     16.50       54.79</div><div class='input'><span class='fu'>generateFeature</span><span class='op'>(</span><span class='va'>heart</span>, varlist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cp"</span>, <span class='st'>"thal"</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"Frequent"</span>, method <span class='op'>=</span> <span class='st'>"Frequency"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     Freq_t_cp Freq_t_thal
 #&gt; 1          23          18
 #&gt; 2          87         166
 #&gt; 3          50         166
@@ -809,20 +833,13 @@
 #&gt; 303        50         166</div><div class='input'>
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -830,13 +847,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

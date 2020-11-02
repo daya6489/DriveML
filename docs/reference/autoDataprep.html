@@ -8,21 +8,29 @@
 
 <title>Automatic data preparation for ML algorithms — autoDataprep • DriveML</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="Automatic data preparation for ML algorithms — autoDataprep" />
 
+<meta property="og:title" content="Automatic data preparation for ML algorithms — autoDataprep" />
 <meta property="og:description" content="Final data preparation before ML algorithms. Function provides final data set and highlights of the data preparation" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -71,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -89,7 +98,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/auto_pdp.html">DriveML: partial dependence plots</a>
+      <a href="../articles/experiment_driveml_big_data.html">Experiment of DriveML R package - Big Data set</a>
+    </li>
+    <li>
+      <a href="../articles/experiment_driveml_large_data.html">Experiment of DriveML R package - Large Data set</a>
+    </li>
+    <li>
+      <a href="../articles/experiment_driveml_medium_data.html">Experiment of DriveML R package - Medium Data set</a>
+    </li>
+    <li>
+      <a href="../articles/experiment_driveml_small_data.html">Experiment of DriveML R package - Small Data set</a>
     </li>
   </ul>
 </li>
@@ -97,9 +115,13 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/daya6489/DriveML/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -107,44 +129,43 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Automatic data preparation for ML algorithms</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/daya6489/DriveML/blob/master/R/autoDataPrep.R'><code>R/autoDataPrep.R</code></a>, <a href='https://github.com/daya6489/DriveML/blob/master/R/printAutoDataPrep.R'><code>R/printAutoDataPrep.R</code></a></small>
     <div class="hidden name"><code>autoDataprep.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
     <p>Final data preparation before ML algorithms. Function provides final data set and highlights of the data preparation</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>autoDataprep</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>target</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>missimpute</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
-  <span class='kw'>auto_mar</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>mar_object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dummyvar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>char_var_limit</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>aucv</span> <span class='kw'>=</span> <span class='fl'>0.02</span>,
-  <span class='kw'>corr</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
-  <span class='kw'>outlier_flag</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>interaction_var</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>frequent_var</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>uid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>onlykeep</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>drop</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
+    <pre class="usage"><span class='fu'>autoDataprep</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  target <span class='op'>=</span> <span class='cn'>NULL</span>,
+  missimpute <span class='op'>=</span> <span class='st'>"default"</span>,
+  auto_mar <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  mar_object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  dummyvar <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  char_var_limit <span class='op'>=</span> <span class='fl'>12</span>,
+  aucv <span class='op'>=</span> <span class='fl'>0.02</span>,
+  corr <span class='op'>=</span> <span class='fl'>0.99</span>,
+  outlier_flag <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  interaction_var <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  frequent_var <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  uid <span class='op'>=</span> <span class='cn'>NULL</span>,
+  onlykeep <span class='op'>=</span> <span class='cn'>NULL</span>,
+  drop <span class='op'>=</span> <span class='cn'>NULL</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
 <span class='co'># S3 method for autoDataprep</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</pre>
-    
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -217,11 +238,11 @@
       <td><p>an object of class <code>autoDataprep</code></p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>list output contains below objects</p>
-<dl class='dl-horizontal'>
+<dl>
   <dt><code>complete_data</code></dt><dd><p>complete dataset including new derived features based on the functional understanding of the dataset</p></dd>
   <dt><code>master_data</code></dt><dd><p>filtered dataset based on the input parameters</p></dd>
   <dt><code>final_var_list</code></dt><dd><p>list of master variables</p></dd>
@@ -229,9 +250,9 @@
   <dt><code>cor_var</code></dt><dd><p>list of correlation variables</p></dd>
   <dt><code>overall_var</code></dt><dd><p>all variables in the dataset</p></dd>
   <dt><code>zerovariance</code></dt><dd><p>variables with zero variance in the dataset</p></dd>
+
 </dl>
 
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Missing imputation using impute function from MLR</p>
@@ -250,49 +271,39 @@ listLearners("classif", check.packages = TRUE, properties = "missings")[c("class
 <li><p>one hot dummy coding for categorical value</p></li>
 <li><p>outlier flag and capping variable for numerical value</p></li>
 </ul>
-    <p>Feature reduction</p><ul>
+
+<p>Feature reduction</p><ul>
 <li><p>zero variance using nearZeroVar caret function</p></li>
 <li><p>pearson's correlation value</p></li>
 <li><p>auc with target variable</p></li>
 </ul>
-    
+
     <h2 class="hasAnchor" id="methods-by-generic-"><a class="anchor" href="#methods-by-generic-"></a>Methods (by generic)</h2>
 
-    <ul>
+    
+<ul>
 <li><p><code>print</code>: Print Method for the autoDataprep</p>
 <p>Print the result of autoDataprep object</p></li>
 </ul>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/mlr/topics/impute'>impute</a></code></p></div>
-    
+    <div class='dont-index'><p><code><a href='https://mlr.mlr-org.com/reference/impute.html'>impute</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>#Auto data prep</span>
-<span class='no'>traindata</span> <span class='kw'>&lt;-</span> <span class='fu'>autoDataprep</span>(<span class='no'>heart</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"target_var"</span>, <span class='kw'>missimpute</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
-<span class='kw'>dummyvar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>aucv</span> <span class='kw'>=</span> <span class='fl'>0.02</span>, <span class='kw'>corr</span> <span class='kw'>=</span> <span class='fl'>0.98</span>, <span class='kw'>outlier_flag</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-<span class='kw'>interaction_var</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>frequent_var</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='no'>train</span> <span class='kw'>&lt;-</span> <span class='no'>traindata</span>$<span class='no'>master</span></div></pre>
+<span class='va'>traindata</span> <span class='op'>&lt;-</span> <span class='fu'>autoDataprep</span><span class='op'>(</span><span class='va'>heart</span>, target <span class='op'>=</span> <span class='st'>"target_var"</span>, missimpute <span class='op'>=</span> <span class='st'>"default"</span>,
+dummyvar <span class='op'>=</span> <span class='cn'>TRUE</span>, aucv <span class='op'>=</span> <span class='fl'>0.02</span>, corr <span class='op'>=</span> <span class='fl'>0.98</span>, outlier_flag <span class='op'>=</span> <span class='cn'>TRUE</span>,
+interaction_var <span class='op'>=</span> <span class='cn'>TRUE</span>, frequent_var <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>train</span> <span class='op'>&lt;-</span> <span class='va'>traindata</span><span class='op'>$</span><span class='va'>master</span>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#methods-by-generic-">Methods (by generic)</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -300,13 +311,16 @@ listLearners("classif", check.packages = TRUE, properties = "missings")[c("class
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
