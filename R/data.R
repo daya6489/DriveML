@@ -21,5 +21,4 @@
 #' @examples
 #' ## Load heart data
 #' data(heart)
-#' @source \url{https://www.kaggle.com/cdabakoglu/heart-disease-classifications-machine-learning}
 "heart"

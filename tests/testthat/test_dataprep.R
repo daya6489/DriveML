@@ -12,7 +12,7 @@ test_that("test output object", {
   dataprep <- autoDataprep(heart, target = "target_var")
   expect_output(str(dataprep), "list")
   expect_output(str(dataprep), "13 obs")
-  expect_equal(nrow(dataprep$complete_data), 303)
+  expect_equal(nrow(dataprep$master_data), 303)
   expect_output(str(dataprep), "autoDataprep")
 })
 

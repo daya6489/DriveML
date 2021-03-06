@@ -28,7 +28,7 @@ Automated Machine Learning (DriveML) mainly refers to the automated methods for 
 
 ### Summary of trained data and model function
 
-Dimensions of the dataset and other informations
+Dimensions of the dataset and other information
 
 ```{r dl_1,warning=FALSE,eval=T,include=F}
 t1 <- modelobject$datasummary$train;
@@ -131,9 +131,10 @@ Table has Model fitting time and performance metric like AUC, Accuaracy, Precisi
 
 ```{r std1, fig.show = "hold", out.width = "50%", fig.align = "default", warning=FALSE, eval= pl_glmnet, render = modelobject, echo=F}
 
-masterModel <- modelobject$trainedModels[["glmnet"]]
-masterModel$modelPlots$TrainROC
-masterModel$modelPlots$TestROC
+#masterModel <- modelobject$trainedModels[["glmnet"]]
+#masterModel$modelPlots$TrainROC
+#masterModel$modelPlots$TestROC
+print("DD")
 ```
 
 ```{r std2, fig.show = "hold", out.width = "50%", fig.align = "default", warning=FALSE, eval= pl_logreg, render = modelobject, echo=F}

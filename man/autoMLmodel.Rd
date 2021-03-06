@@ -111,7 +111,6 @@ varImp = 10, liftGroup = 50, maxObs = 4000, uid = NULL, seed = 1991)
 }
 \seealso{
 \code{\link[mlr:train]{mlr train}}
-\code{\link[caret:train]{caret train}}
 \code{\link[mlr:makeLearner]{makeLearner}}
 \code{\link[mlr:tuneParams]{tuneParams}}
 }

@@ -1,12 +1,20 @@
+# DriveML 0.1.4
+
+## Enhancements
+* removed complete data option from `autoDataprep` list output 
+
+
+# DriveML 0.1.3
+
+## Bug fixes
+* matrix issues has fixed
+
 # DriveML 0.1.2
 
 ## Enhancements
-* added generic S3 function for printAutoDataprep
+* removed printAutoDataprep function
 * removed printAutoMAR function and which is not required
-* removed SmartEDA report function due to high dependecies
 * modified markdown help page
 
-
 # DriveML 0.1.0
-
 * Added a `NEWS.md` file to track changes to the package.

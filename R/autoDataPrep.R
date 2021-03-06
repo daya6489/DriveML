@@ -4,7 +4,7 @@
 #'
 #' @param data [data.frame | Required] dataframe or data.table
 #' @param target [integer | Required] dependent variable (binary or multiclass)
-#' @param missimpute [text | Optional] missing value impuation using mlr misimpute function. Please refer to the "details" section to know more
+#' @param missimpute [text | Optional] missing value imputation using mlr misimpute function. Please refer to the "details" section to know more
 #' @param auto_mar [character | Optional] identify any missing variable which are completely missing at random or not (default FALSE). If TRUE this will call autoMAR()
 #' @param mar_object [character | Optional] object created from autoMAR function
 #' @param dummyvar [logical | Optional] categorical feature engineering i.e. one hot encoding (default is TRUE)
@@ -63,7 +63,7 @@
 #' traindata <- autoDataprep(heart, target = "target_var", missimpute = "default",
 #' dummyvar = TRUE, aucv = 0.02, corr = 0.98, outlier_flag = TRUE,
 #' interaction_var = TRUE, frequent_var = TRUE)
-#' train <- traindata$master
+#' train <- traindata$master_data
 #' @import data.table stats
 #' @importFrom sampling strata
 #' @importFrom SmartEDA ExpData
@@ -79,7 +79,7 @@ frequent_var = FALSE, uid = NULL, onlykeep = NULL, drop = NULL, verbose = FALSE)
   if (!is.data.frame(data)) stop ("Input data is not a data frame" )
   if (is.null(target)) stop ("target variable is missing" )
   cl <- match.call()
-  setDT(data)
+  data <- clean_data(data)
   data[, paste0(target) := ifelse(is.na( get(target)), 0, get(target))]
   setDF(data)
   datstrain <- ExpData(data, type = 1)
@@ -260,15 +260,14 @@ frequent_var = FALSE, uid = NULL, onlykeep = NULL, drop = NULL, verbose = FALSE)
   cl[[1]] <- as.name("autoDataprep")
   fit <- list(call = cl,
               datasummary = list(type1 = datstrain, type2 = datstrain1),
-              complete_data = mydata,
-              master_data = mydata[unique(c(unique_var, target, master_variable))],
+              master_data = mydata,
               raw_list = list("Num_Correlation" = myDF, "AUC_value" = varSel_auc1),
               var_list = list("All_columns" = all_names, "Numeric_col" = num_var, "Character_col" = char_var,  "Factor_col" = factor_var,
                               "Logical_col" = logical_var, "Date_col" = date_var, "Unique_col" = unique_var, "MAR_col" = mar_variable,
                               "Dummy_col" = dumvarnam, "Dropped_col" = drop_var, "Low_auc_col" = low_auc_var,
                               "first_set_var" = varbucket, "final_var_list" = master_variable, "cor_var" = corNms,
                               "auc_var" = varSel_auc, "overall_variable" = all_variable, "zerovariance" = zeroNms,
-                              "outlier_summary" = out_flag_var))
+                              "outlier_summary" = out_flag_var, "mydata_var" = unique(c(unique_var, target, master_variable))))
   attr(fit, "class") <- "autoDataprep"
   invisible(gc(verbose = FALSE))
   return(fit)

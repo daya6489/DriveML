@@ -20,6 +20,7 @@ vignette: >
 library(rmarkdown)
 library(SmartEDA)
 library(DriveML)
+library(mlr)
 library(knitr)
 library(ggplot2)
 library(tidyr)
@@ -41,20 +42,20 @@ This package automates the following steps on any input dataset for machine lear
 2. Feature engineering
     + Missing at random features
     + Missing variable imputation
-    + Outlier treatment  - Oultier flag and imputation with 5th or 95th percentile value
+    + Outlier treatment  - Outlier flag and imputation with 5th or 95th percentile value
     + Date variable transformation
     + Bulk interactions for numerical features
-    + Frequent tranformer for categorical features
+    + Frequent transformer for categorical features
     + Categorical feature engineering - one hot encoding
     + Feature selection using zero variance, correlation and AUC method
     
-3. Model training and validation
+3. Binary classification - Model training and validation
     + Automated test and validation set creations
-    + Hyperparameter tuing using random search
-    + Mutliple binary classification included like logistic regression, randomForest, xgboost, glmnet, rpart
+    + Hyperparameter tuning using random search
+    + Multiple binary classification algorithms like logistic regression, randomForest, xgboost, glmnet, rpart
     + Model validation using AUC value
     + Model plots like training and testing ROC curve, threshold plot
-    + Probaility scores and model objects 
+    + Probability scores and model objects 
 
 4. Model Explanation
     + Lift plot
@@ -64,7 +65,7 @@ This package automates the following steps on any input dataset for machine lear
 5. Model report 
     + model output in rmarkdown html format
 
-Additionally, we are providing a function SmartEDA for Exploratory data analysis that generates automated EDA report in HTML format to understand the distributions of the data. Please note there are some dependencies on some other R pacakges such as MLR, caret, data.table, ggplot2, etc. for some specific task.
+Additionally, we are providing a function SmartEDA for Exploratory data analysis that generates automated EDA report in HTML format to understand the distributions of the data. Please note there are some dependencies on some other R packages such as MLR, caret, data.table, ggplot2, etc. for some specific task.
 
 To summarize, DriveML package helps in getting the complete Machine learning classification model just by running the function instead of writing lengthy r code.
 
@@ -83,13 +84,13 @@ Algorithm: Missing at random features
 
 ## 2. Functionalities of DriveML
 
-The DriveML R package has three unique functionalities as
+The DriveML R package has three unique functions
 
 1. Data Pre-processing and Data Preparation
     + `autoDataPrep` function to generate a novel features based on the functional understanding of the dataset
     
 2. Building Machine Learning Models
-    + `autoMLmodel` function to develope baseline machine learning models using regression and tree based classfication techniques
+    + `autoMLmodel` function to develop baseline machine learning models using regression and tree based classification techniques
 
 3. Generating Model Report
     + `autoMLReport` function to print the machine learning model outcome in HTML format
@@ -215,6 +216,8 @@ kable(outlier_summ,"html")
 
 ### 3.2 Data preparations using `autoDataprep`
 
+**Data preparation using DriveML autoDataprep function with default options**
+
 ```{r , warning=FALSE,eval=T,include=T}
 dateprep <- autoDataprep(data = heart, 
                          target = 'target_var',
@@ -230,7 +233,52 @@ dateprep <- autoDataprep(data = heart,
                              onlykeep = NULL,
                              drop = NULL)
 
-print(dateprep)
+train_data <- dateprep$master_data
+```
+
+**We can use different types of missing imputation using mlr::impute function**
+
+```{r , warning=FALSE,eval=T,include=T}
+myimpute <- list(classes=list(factor = imputeMode(),
+                              integer = imputeMean(),
+                              numeric = imputeMedian(),
+                              character = imputeMode()))
+dateprep <- autoDataprep(data = heart, 
+                         target = 'target_var',
+                         missimpute = myimpute,
+                         auto_mar = FALSE,
+                             mar_object = NULL,
+                             dummyvar = TRUE,
+                             char_var_limit = 15,
+                             aucv = 0.002,
+                             corr = 0.98,
+                             outlier_flag = TRUE,
+                             uid = NULL,
+                             onlykeep = NULL,
+                             drop = NULL)
+
+train_data <- dateprep$master_data
+```
+
+**Adding Missing at Random features using autoMAR function**
+
+```{r , warning=FALSE,eval=T,include=T}
+marobj <- autoMAR (heart, aucv = 0.9, strataname = NULL, stratasize = NULL, mar_method = "glm")
+
+dateprep <- autoDataprep(data = heart, 
+                         target = 'target_var',
+                         missimpute = myimpute,
+                         auto_mar = TRUE,
+                             mar_object = marobj,
+                             dummyvar = TRUE,
+                             char_var_limit = 15,
+                             aucv = 0.002,
+                             corr = 0.98,
+                             outlier_flag = TRUE,
+                             uid = NULL,
+                             onlykeep = NULL,
+                             drop = NULL)
+
 train_data <- dateprep$master_data
 ```
 
@@ -245,7 +293,7 @@ Automated training, tuning and validation of machine learning models. This funct
     + Random forest - ranger
     + Decision tree - rpart
 
-```{r , warning=FALSE,eval=T,include=T}
+```{r , warning=FALSE,eval=F,include=T}
 mymodel <- autoMLmodel( train = heart,
                         test = NULL,
                         target = 'target_var',
@@ -261,6 +309,9 @@ mymodel <- autoMLmodel( train = heart,
                         seed = 1991)
 ```
 
+```{r , warning=FALSE,eval=T,include=F}
+mymodel <- heart.model
+```
 ### 3.3 Model output
 
 Model performance

@@ -7,7 +7,6 @@
 #' @examples
 #' ## Sample model object
 #' modelobj <- heart.model
-#' @references See \url{https://www.kaggle.com/cdabakoglu/heart-disease-classifications-machine-learning}
 #' @keywords mlmodel
 #' @docType data
 "heart.model"

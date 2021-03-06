@@ -23,9 +23,6 @@ A data frame with 303 rows and 14 variables:
   \item{\code{target_var}}{integer the presence of heart disease in the patient. It is integer valued from 0 (no presence) to 4}
 }
 }
-\source{
-\url{https://www.kaggle.com/cdabakoglu/heart-disease-classifications-machine-learning}
-}
 \usage{
 heart
 }

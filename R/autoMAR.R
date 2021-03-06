@@ -17,7 +17,7 @@
 autoMAR <- function(data, aucv = 0.9, strataname = NULL,
                     stratasize = NULL, mar_method = "glm"){
   if (!is.data.frame(data)) stop("Input data is not a data frame")
-  if (!is.data.table(data)) setDT(data)
+  data <- clean_data(data)
   cl <- match.call()
   if (mar_method  == "rf") stop("Random forest method work in progress ...")
   # Checking the presence of missing values

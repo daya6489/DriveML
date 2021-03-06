@@ -62,13 +62,12 @@
 #' varImp = 10, liftGroup = 50, maxObs = 4000, uid = NULL, seed = 1991)
 #'}
 #' @import ggplot2
-#' @importFrom mlr train performance makeClassifTask makeTuneControlGrid makeTuneControlRandom makeTuneControlIrace makeResampleDesc tuneParams setHyperPars generateHyperParsEffectData getFeatureImportance resample plotCalibration generateCalibrationData generateThreshVsPerfData fpr tpr acc calculateROCMeasures plotROCCurves plotThreshVsPerf makeLearners auc ppv f1 tpr acc
+#' @importFrom mlr train performance makeClassifTask makeTuneControlGrid makeTuneControlRandom makeTuneControlIrace makeResampleDesc tuneParams setHyperPars generateHyperParsEffectData getFeatureImportance resample plotCalibration generateCalibrationData generateThreshVsPerfData fpr tpr acc calculateROCMeasures plotROCCurves plotThreshVsPerf makeLearners makeLearner auc ppv f1 tpr acc
 #' @importFrom ParamHelpers makeParamSet makeIntegerParam makeNumericParam makeDiscreteParam makeNumericLearnerParam makeLogicalLearnerParam makeDiscreteLearnerParam makeIntegerLearnerParam makeIntegerVectorLearnerParam
 #' @importFrom caTools sample.split
 #' @importFrom SmartEDA ExpCatViz
 #' @seealso
 #' \code{\link[mlr:train]{mlr train}}
-#' \code{\link[caret:train]{caret train}}
 #' \code{\link[mlr:makeLearner]{makeLearner}}
 #' \code{\link[mlr:tuneParams]{tuneParams}}
 #' @export autoMLmodel

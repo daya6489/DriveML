@@ -1,14 +1,14 @@
 Package: DriveML
 Type: Package
 Title: Self-Drive Machine Learning Projects
-Version: 0.1.2
+Version: 0.1.4
 Authors@R: c(person("Dayanand Ubrangala", role = c("aut", "cre"), email = "daya6489@gmail.com"),
              person("Sayan", "Putatunda", role = c("aut","ctb")),
              person("Kiran", "R", role = c("aut","ctb")),
              person("Ravi", "Prasad Kondapalli", role = c("aut","ctb")))
 Maintainer: Dayanand Ubrangala <daya6489@gmail.com>
 Depends: R (>= 3.3.0)
-Imports: sampling(>= 2.8), rmarkdown(>= 1.9), SmartEDA, data.table(>= 1.10.4-3), caTools, ParamHelpers(>= 1.12), mlr(>= 2.15.0), ggplot2(>= 2.2.1), iml
+Imports: sampling(>= 2.8), rmarkdown, SmartEDA, data.table(>= 1.10.4-3), caTools, ParamHelpers(>= 1.12), mlr(>= 2.15.0), ggplot2(>= 2.2.1), iml
 Description: Implementing some of the pillars of an automated machine learning pipeline such as (i) Automated data preparation, (ii) Feature engineering, (iii) Model building in classification context that includes techniques such as (a) Regularised regression [1], (b) Logistic regression [2], (c) Random Forest [3], (d) Decision tree [4] and (e) Extreme Gradient Boosting (xgboost) [5], and finally, (iv) Model explanation (using lift chart and partial dependency plots). Accomplishes the above tasks  by running the function instead of writing lengthy R codes. Also provides some additional features such as generating missing at random (MAR) variables and automated exploratory data analysis. Moreover, function exports the model results with the required plots in an HTML vignette report format that follows the best practices of the industry and the academia. [1] Gonzales G B and De Saeger (2018) <doi:10.1038/s41598-018-21851-7>, [2] Sperandei S (2014) <doi:10.11613/BM.2014.003>, [3] Breiman L (2001) <doi:10.1023/A:1010933404324>, [4] Kingsford C and Salzberg S (2008) <doi:10.1038/nbt0908-1011>, [5] Chen Tianqi and Guestrin Carlos (2016) <doi:10.1145/2939672.2939785>.
 License: GPL-3 | file LICENSE
 Suggests: testthat, knitr, ranger, glmnet, randomForest, rpart, xgboost, stats, graphics, tidyr, MASS

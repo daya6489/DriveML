@@ -42,20 +42,13 @@ Partial dependence plots (PDPs) help you to visualize the relationship between a
 mymodel = heart.model
 pdp_chol = autoPDP(heart, mymodel, feature = "chol", sample = 0.8, seed = 1234)
 
-# Type one MLR package
-mod <- mlr::train(makeLearner("classif.ranger"), iris.task)
-cc = autoPDP(iris, mod, feature = c("Sepal.Length","Sepal.Width","Petal.Length",
-                                   "Petal.Width"), sample = 1, seed = 121)
-# Type 2 DrvieML object
+# Type 1 DrvieML object
 hearML <- autoMLmodel(heart,  target = "target_var",  testSplit = 0.2,
 tuneIters = 10,  tuneType = "random",
 models = "all", varImp = 20,  liftGroup = 50, positive = 1, seed = 1991)
 cc = autoPDP(heart, hearML, feature = "chol", sample = 0.8, seed = 1234)
 
-cc1 = autoPDP(heart, trainedModel,target = "target_var", feature = "chol",
-sample = 1, modelname = "logreg", seed = 121)
-
-# Type 3 other ML object
+# Type 2 other ML object
 library(randomForest)
 library(MASS)
 rf = randomForest(medv ~ ., data = Boston, ntree = 50)
@@ -65,5 +58,4 @@ cc = autoPDP(Boston, rf,target = "medv", feature = "nox", sample = 1, seed = 121
 \seealso{
 \code{\link[iml:FeatureEffects]{FeatureEffects}}
 \code{\link[mlr:plotPartialDependence]{plotPartialDependence}}
-\code{\link[pdp:partial]{partial}}
 }

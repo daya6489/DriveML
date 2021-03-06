@@ -81,6 +81,15 @@ addNAfactor <- function(x){
   return(x)
 }
 
+## clean data
+clean_data <- function(mydata){
+  if (missing(mydata)) stop("Input data is missing")
+  setDT(mydata)
+  df <- lapply(mydata, function(x) ifelse(grepl("^$|^ $", x)==TRUE, NA, x))
+  df <- setDT(df)
+  return(df)
+}
+
 ## AutoModel
 generateTask <- function(x, y = NULL, positive = 1, maxLevels = 100){
     if (is.null(y)) stop("target variable is missing")
@@ -123,6 +132,7 @@ generateMetrics <- function(task){
 generateHyperParams <- function(learners = NULL, task){
   hypers <- list()
     hypers$xgboost <- makeParamSet(makeIntegerParam(id = "max_depth", lower = 2, upper = 12),
+                                   makeDiscreteParam(id = "eval_metric", values = "logloss"),
                                    makeNumericLearnerParam(id = "min_child_weight", default = 1, lower = 1, upper = 15),
                                  makeNumericParam(id = "eta", lower = 0.01, upper = 0.5),
                                  makeNumericLearnerParam(id = "subsample", default = 1, lower = 0.5, upper = 1),
@@ -281,13 +291,14 @@ pdplot <- function(train, trainedModels, feat, results, seed, y, sample){
   return(list(plots = plots))
 }
 
+
 ### Beta coef for Logreg, glmnet and raprt
 betaml <- function(modelobjet, mname){
   model <- modelobjet
   if (mname == "glmnet"){
     md_coef <- predict(model$learner.model, type = "coef", s = min(model$learner.model$lambda))
     md_coef <- as.matrix(md_coef)
-    md_coef <- as.data.frame(md_coef); names(md_coef) <- "coefficients"
+    md_coef <- data.frame(md_coef); names(md_coef) <- "coefficients"
     md_coef$Variable <- rownames(md_coef)
     md_coef <- md_coef[, c("Variable", "coefficients")]
   } else
