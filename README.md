@@ -1,16 +1,15 @@
-<img src = "https://github.com/daya6489/DriveML/blob/master/man/figures/driveml_image.PNG">
+# DriveML <img src="man/figures/dml_logo.png" align="right" width="130" height="150"/>
+
 
 [![CRAN status](https://www.r-pkg.org/badges/version/DriveML)](https://cran.r-project.org/package=DriveML)
-
 [![Downloads](http://cranlogs.r-pkg.org/badges/DriveML)](https://cran.r-project.org/package=DriveML)
-
 [![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DriveML)](https://cran.r-project.org/package=DriveML)
 
----
 
-# DriveML
 
-DriveML for automated machine learning. DriveML helps in implementing some of the pillars of an automated machine learning pipeline such as automated data preparation, feature engineering, model building, and model explanation by executing simple functions for each purpose instead of writing lengthy R codes.
+## Background
+
+ `DriveML` package for automated machine learning especially in the classification context. `DriveML` saves a lot of effort required for data preparation, feature engineering, model selection and writing lengthy codes in a programming environment such as R. Overall, the main benefits of DriveML are in development time savings, reduce developers errors, optimal tuning of machine learning models and reproducibility.
 
 **DriveML Framework:**
 
@@ -127,6 +126,17 @@ small_ml_random <- autoMLmodel(small_data_t,  target = "target_var",  testSplit 
 small_ml_random$results
 
 ```
+**Model comparison results**
+![](man/figures/model-results.png)<!-- -->
+
+**Test AUC**
+![](man/figures/o10-1.png)<!-- -->
+
+**Variable Importance**
+![](man/figures/o11-1.png)<!-- -->
+
+**Threshold Plot**
+![](man/figures/o12-1.png)<!-- -->
 
 ## Present model report using autoMLReport function
 

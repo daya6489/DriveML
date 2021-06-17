@@ -66,6 +66,7 @@ generateFeature <- function(data, varlist, type = "Frequent", method = NULL) {
     for (j in 1 : length(pp))
       colnames (sparsemtx) <- gsub (pp[j], qq[j], colnames (sparsemtx))
     colnames(sparsemtx) <- trimws(gsub("[][!#$%()*?,.:;<=>@^|~.{}]", "_q", colnames(sparsemtx)))
+    colnames(sparsemtx) <- paste0('d_', colnames(sparsemtx))
     sparsemtx <- sparsemtx[, !duplicated(names(sparsemtx))]
     invisible(gc(verbose = FALSE))
     return(sparsemtx)
@@ -147,6 +148,7 @@ generateFeature <- function(data, varlist, type = "Frequent", method = NULL) {
         if (method != "multiply" & method != "subtract" & method != "divide" & method != "add" ) stop ("Invalid method is selected")
         if (is.null(method)) method <- "multiply"
         XX <- data[varlist]
+        XX[,] = sapply(XX[,], as.numeric)
         listcalc <- combn(varlist, 2)
         inter_name <- paste0("Inter_", apply(listcalc, 2, function(x) paste(x, collapse = "_")))
         YY <- matrix(nrow = nrow(XX), ncol = ncol(listcalc))

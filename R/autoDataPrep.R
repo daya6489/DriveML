@@ -138,6 +138,7 @@ frequent_var = FALSE, uid = NULL, onlykeep = NULL, drop = NULL, verbose = FALSE)
     num_flag <- num_var[num_var_cnt == 2 | num_var_cnt == 3]
     num_var <- num_var[num_var_cnt > 3]
     num_var <- setdiff(num_var, unique_var)
+    num_flag <- setdiff(num_flag, c(unique_var, target))
   }
 
   final_dum_var <- setdiff(unique(c(factor_flag, date_flag, num_flag)), c(unique_var, target))
