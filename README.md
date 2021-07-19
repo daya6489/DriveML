@@ -151,6 +151,7 @@ autoMLReport(mlobject = small_ml_random, mldata = small_data, op_file = "driveML
 
 The pre-print version of the paper on DriveML is available at ArXiv at- https://arxiv.org/pdf/2005.00478.pdf.
 
+DriveML paper was presented at the 2nd International Workshop on Data Quality Assessment for Machine Learning at Knowledge Discovery and Data Mining (KDD) conference that was held on14-18 August, 2021, at Singapore. Conference workshop website link- http://data-readiness-kdd-2021.mybluemix.net
 
 ## References
 
